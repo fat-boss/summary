@@ -1,0 +1,38 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+
+1.Object.defineProperty()
+语法：
+Object.defineProperty(obj, prop, descriptor)
+参数说明
+obj：必需。目标对象 
+prop：必需。需定义或修改的属性的名字
+descriptor：必需。目标属性所拥有的特性
+	value:属性的值(不用多说了)
+
+	writable:如果为false，属性的值就不能被重写,只能为只读了
+
+	configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable）
+
+	enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
+
+	如果用get和set就不能用writable和value中的任何一个
+
+返回值
+传入函数的对象。即第一个参数obj
+
+	var a= {}
+	Object.defineProperty(a,"b",{
+	  set:function(newValue){
+		console.log("你要赋值给我,我的新值是"＋newValue)
+		},
+	  get:function(){
+		console.log("你取我的值")
+		return 2 //注意这里，我硬编码返回2
+	   }
+	})
+	a.b =1 //打印 你要赋值给我,我的新值是1
+	console.log(a.b)    //打印 你取我的值
+						//打印 2    注意这里，和我的硬编码相同的
+
+
+2.Object.keys(obj),可以遍历出对象的属性，返回的是一个数组

@@ -1,0 +1,98 @@
+new Vue({
+	el: '#app',
+	data:{},
+	methods:{},
+	filters:{},
+	computed:{},
+	watch:{},
+	components: {}
+})
+
+app.$watch('prop',function(oldVal,newVal){  //与上述的watch效果相同
+
+})
+
+computed中的属性设置可以写成 同Object.defineProperty类似
+computed: {
+	fullname: {
+		get: function(){
+			return this.firstname + ' ' + this.lastname
+		},
+		set: function(val){
+			var names = val.split(' ');
+			this.firstname = names[0]
+			this.lastname = names[1]
+		}
+	}
+}
+
+Vue.component('myCon',{   //  <my-con></my-con>
+	props:[],
+	template: '<div></div>'
+})
+
+<!-- 阻止单击事件冒泡 -->
+<a v-on:click.stop="doThis"></a>
+<!-- 提交事件不再重载页面 -->
+<form v-on:submit.prevent="onSubmit"></form>
+<!-- 修饰符可以串联  -->
+<a v-on:click.stop.prevent="doThat"></a>
+<!-- 只有修饰符 -->
+<form v-on:submit.prevent></form>
+<!-- 添加事件侦听器时使用事件捕获模式 -->
+<div v-on:click.capture="doThis">...</div>
+<!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+<div v-on:click.self="doThat">...</div>
+
+全部的按键别名：
+.enter
+.tab
+.delete (捕获 “删除” 和 “退格” 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+
+.ctrl
+.alt
+.shift
+.meta
+
+v-model.lazy .number .trim
+
+
+prop验证
+
+Vue.component('example', {
+  props: {
+    // 基础类型检测 （`null` 意思是任何类型都可以）
+    propA: Number,
+    // 多种类型
+    propB: [String, Number],
+    // 必传且是字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    // 数字，有默认值
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 数组／对象的默认值应当由一个工厂函数返回
+    propE: {
+      type: Object,
+      default: function () {
+        return { message: 'hello' }
+      }
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {   //validator:验证器
+        return value > 10
+      }
+    }
+  }
+})

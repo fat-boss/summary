@@ -1,0 +1,1 @@
+解析js文件用babel-loader时，需要写全（ps：以后用loader都写全，以免引起未知bug）

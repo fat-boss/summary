@@ -1,0 +1,348 @@
+1./server/datasources.json 数据库的配信息配置文件
+
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDs": {
+      "host": "demo.strongloop.com",
+      "port": 3306,
+      "url": "",
+      "database": "getting_started",
+      "password": "L00pBack",
+      "name": "mysqlDs",
+      "user": "demo",
+      "connector": "mysql"
+    }
+}
+
+2./server/model-config.json 模型数据库连接配置
+
+ "CoffeeShop": {
+    "dataSource": "mysqlDs",
+    "public": true
+  }
+
+3./server/boot下面的js文件，程序启动时就会被执行。（如在数据库里面添加东西）
+
+module.exports = function(app) {
+  app.dataSources.mysqlDs.automigrate('CoffeeShop', function(err) {  //程序启动自动产生一张表，不会重复产生
+    if (err) throw err;
+
+    app.models.CoffeeShop.create([{
+      name: 'Bel Cafe',
+      city: 'Vancouver'
+    }, {
+      name: 'Three Bees Coffee House',
+      city: 'San Mateo'
+    }, {
+      name: 'Caffe Artigiano',
+      city: 'Vancouver'
+    }, ], function(err, coffeeShops) {
+      if (err) throw err;
+
+      console.log('Models created: \n', coffeeShops);
+    });
+  });
+};
+
+4.扩展api  /model/... .js/
+module.exports = function(CoffeeShop) {
+...
+  CoffeeShop.getName = function(shopId, cb) {
+    CoffeeShop.findById( shopId, function (err, instance) {
+        var response = "Name of coffee shop is " + instance.name;
+        cb(null, response);
+        console.log(response);
+    });
+  }
+...
+  CoffeeShop.remoteMethod (
+        'getName',
+        {
+          http: {path: '/getname', verb: 'get'},
+          accepts: {arg: 'id', type: 'number', http: { source: 'query' } },
+          returns: {arg: 'name', type: 'string'}
+        }
+    );
+	
+	//原型扩展，其实例对象 是用findOne后的数据对象（目前理解）
+	Coffeeshop.prototype.protoTest = function(p1,p2){
+		console.log(p1+p2,'test success');
+	};
+  
+	  Coffeeshop.findOne({},function(err,data){
+		  data.protoTest(1,2);  //输出结果为 3 'test success'
+		});
+}
+有两个参数时
+accepts: [
+        { arg: 'id', type: 'string', require: true },
+        {
+          arg: 'accessToken',
+          type: 'object'
+        }
+      ],
+	  
+	  
+app.models.模型名称  可以通过这个来进行数据库操作   注意：模型名称首字母大写，如果model里面有-隔开，隔开后的第一个字母大写
+
+datasouces.json中配置mongodb
+
+"mongoDs": {
+    "host": "localhost",
+    "database": "test2",
+    "port": 27017,
+    "name": "mongoDs",
+    "connector": "mongodb"
+  }
+	或者
+"mongoDs": {
+    "url": "mongodb://localhost/test2",
+    "name": "mongoDs",
+    "connector": "mongodb"
+  }
+
+数据库中的集合名字就是定义的模型名字  
+	  
+通过模型名字操作数据库整理：
+
+create(obj,function(err,data){})
+findOne({
+	where: {条件}，
+	skip:0,
+	limit:0,
+	order: 'created DESC',
+	//include: 'user'
+	include: {
+            relation: "project",
+            scope: {
+              fields: ["projectName"]
+            }
+          }
+})
+find(...)同上
+
+include的使用
+1.首先需要两个模型有相互联系（在模型的json文件中去设置）
+my-user.json
+ "relations": {
+    "includeTest": {
+      "type": "hasMany",
+      "model": "testT",
+      "primaryKey":"username",
+      "foreignKey": "name"
+    }
+  },
+test-t.json
+ "relations": {
+    "includeTest": {
+      "type": "belongsTo",
+      "model": "myUser",
+      "primaryKey":"username",
+      "foreignKey": "name"
+    }
+	
+Testt.find({
+        include: {
+          relation: 'includeTest',
+          scope:{
+            fields:['username','city']
+          },
+        }
+
+结果如下：
+{
+  "result": [
+    {
+      "name": "lxy",
+      "age": 22,
+      "id": "58a40bc4861c12456cb20ed8",
+      "includeTest": {
+        "username": "lxy",
+        "city": "zg"
+      }
+    }
+  ]
+}
+Testt.test = function(num,cb){
+      // cb(null,num);
+      console.log(this.relations.includeTest.modelTo.modelName) //myUser同理，modelFrom输出则为testT
+
+
+
+		
+updateAll(obj条件,更换内容,function(err,_))
+update同上
+count
+destroyAll  删除只有这个destroy不行
+fileds过滤器 true代表返回该属性及值，false反之
+ Coffeeshop.find({fields:{name:true,city:false}},function(err,data){
+      cb(null,data);
+    })
+	
+	fields:"name"   
+	fields:["name","city"]  必须加引号
+上面意思即代表返回name属性和值，不返回（显示）city属性和值
+{where: { property: { inq: [val1, val2, ...]}}},inq运算符检查指定的属性的值是否与数组中提供的任何值匹配	  
+	  
+	  
+	  
+	  
+beforeRemote() 在远程方法之前运行。
+afterRemote() 在远程方法成功完成后运行。	  
+	  
+mongodb 聚合用法（包括group match project等）http://www.runoob.com/mongodb/mongodb-aggregate.html/
+											 https://docs.mongodb.com/manual/reference/operator/aggregation/project/ 
+$lookup	  可实现两个集合之间的连接查询
+
+from参数：与想要连接的集合，localField和foreignField则是两个集合的连接的字段（同sql），as参数即为连接集合查询出来的结果
+
+db.CoffeeShop.aggregate({$lookup:{from:"testT",localField:"name",foreignField:"name",as:"newName"}})	  
+	  
+ User.count({
+        and: [
+          { active: { neq: 3 } },  //不等于3
+          {
+            or: orArr  //or 代表或者，满足即可
+          }
+        ]
+      }	  
+	  
+	  
+accepts: [
+        { arg: 'obj', type: 'object', http: { source: 'body' } },
+        {
+          arg: 'ip', type: 'string', http: function (ctx) {
+            var req = ctx.req;
+            return req.ip;
+          }
+        }
+      ],	  
+http如果是函数，ctx上下文环境，ctx.req请求  请求的ip	  
+
+accepts: {
+          arg: 'num',
+          type: 'number',
+          http: function(ctx){
+            var req = ctx.req;
+            console.log(req.toString());
+            return +req.param('a') + +req.param('b');
+          }
+        },	 
+		
+ $.ajax({
+        type:'post',
+        url:'http://localhost:3000/api/CoffeeShops/calculate?access_token=588450699974fc0470790709',
+//        url:'http://localhost:3000/api/CoffeeShops/findOne?access_token=588450699974fc0470790709',
+        data:{
+            a:1,
+            b:2
+        },
+        success:function(data){
+            document.write(data.calculatedNum)
+        }
+    });	  
+	  
+$inc 修改器  没有就创建，主要是用于数值的修改
+$set 修改器  没有就创建，可以修改除数值外的东西
+使用前：
+{
+	num:52
+}	  
+使用:
+db.change.update({...},{"$inc":{num:1}});
+使用后
+db.change.find()
+{
+	num:53
+}
+	  
+	  
+	  
+	ECMAScript规定，replace（）方法的参数replacement可以是函数而不是字符串。
+	在这种情况下，每个匹配都调用该函数，它返回的字符串将替换文本使用。
+	第一个参数表示匹配到的字符，
+	第二个参数 如果正则中没有用括号分组则表示匹配到的字符最小索引位置（RegExp.index），若用括号进行分组
+	则表示分组中的字符串或字符（有length属性）
+	第三个参数表示被匹配的字符串（RegExp.input）。  
+	  
+	  
+	  
+	  
+	  
+	  
+	  hasOwnProperty是否有自身的属性，不包含原型属性
+	  
+
+	  mime.lookup(name)     //通过文件名(后缀)，获得content-type的类型如文件名为a.txt type则为 text/plain
+	  
+	  
+Promise.resolve().then(()=>{
+	return something
+	
+}).then(res=>{
+
+})
+	//如果something不是一个promise对象，则会默认直接resolve 进行下一步的then  
+	//同async函数中await一样 ，如果await后面的函数不是返回的promise对象，则自动默认resolve向后执行，
+Promise.resolve.then(()=>{
+	return something;
+}).then(res=>{
+
+})与new Promise(resolve=>{
+	resolve(something)
+}).then(res=>{
+
+})的区别上述表达式很清楚，一个通过return  一个通过resolve()传值    	 
+
+	 
+常见的四种Content-Type类型：
+application/x-www-form-urlencoded 常见的form提交
+multipart/form-data 文件提交
+application/json 提交json格式的数据
+text/xml 提交xml格式的数据
+
+bodyParser({limit:"10240kb"}  //上传数据大小限制
+
+
+//设置响应头中的属性值 可以使前台下载文件
+
+Content-disposition 是 MIME 协议的扩展，MIME 协议指示 MIME 用户代理如何显示附加的文件。当 Internet Explorer 接收到头时，它会激活文件下载对话框，它的文件名框自动填充了头中指定的文件名。（请注意，这是设计导致的；无法使用此功能将文档保存到用户的计算机上，而不向用户询问保存位置。）  
+
+        服务端向客户端游览器发送文件时，如果是浏览器支持的文件类型，一般会默认使用浏览器打开，比如txt、jpg等，会直接在浏览器中显示，如果需要提示用户保存，就要利用Content-Disposition进行一下处理，关键在于一定要加上attachment：
+
+Response.AppendHeader("Content-Disposition","attachment;filename=FileName.txt");
+
+备注：这样浏览器会提示保存还是打开，即使选择打开，也会使用相关联的程序比如记事本打开，而不是IE直接打开了。
+
+Content-Disposition就是当用户想把请求所得的内容存为一个文件的时候提供一个默认的文件名。具体的定义如下：
+
+content-disposition = “Content-Disposition” “:”
+
+disposition-type *( “;” disposition-parm )
+
+disposition-type = “attachment” | disp-extension-token
+
+disposition-parm = filename-parm | disp-extension-parm
+
+filename-parm = “filename” “=” quoted-string
+
+disp-extension-token = token
+
+disp-extension-parm = token “=” ( token | quoted-string )
+
+那么由上可知具体的例子：
+
+Content-Disposition: attachment; filename=“filename.xls”
+
+       当然filename参数可以包含路径信息，但User-Agnet会忽略掉这些信息，只会把路径信息的最后一部分做为文件名。当你在响应类型为application/octet- stream情况下使用了这个头信息的话，那就意味着你不想直接显示内容，而是弹出一个”文件下载”的对话框，接下来就是由你来决定“打开”还是“保存” 了。
+
+注意事项：
+
+1.当代码里面使用Content-Disposition来确保浏览器弹出下载对话框的时候。 response.addHeader("Content-Disposition","attachment");一定要确保没有做过关于禁止浏览器缓存的操作。如下：
+
+response.setHeader("Pragma", "No-cache");  
+response.setHeader("Cache-Control", "No-cache");  
+response.setDateHeader("Expires", 0);

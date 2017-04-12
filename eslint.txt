@@ -1,0 +1,19 @@
+ESLint 是在 ECMAScript/JavaScript 代码中识别和报告模式匹配的工具，
+它的目标是保证代码的一致性和避免错误
+
+npm install -g eslint
+
+eslint --init  //选第一个 然后各种配置选择
+
+检测
+eslint test.js
+
+自动修复
+
+eslint test.js --fix
+
+使用console.log会报错 
+在配置文件中
+"rules":{
+        "no-console":0/“off”
+    }

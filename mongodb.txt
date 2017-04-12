@@ -1,0 +1,37 @@
+1.windows下没有按ctrl+c直接退出数据库在下次登录可能出现问题
+mongod --auth -dbpath 路径 --repair
+
+2.设置账号密码(添加管理员用户)
+//db.addUser('root','root');
+新版mongodb用createUser来创建
+db.createUser(  
+  {  
+    user: "admin",  
+    pwd: "admin",  
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]  
+  }  
+)
+
+
+重新打开cmd  mongod --dbpath 路径 --auth
+use admin
+输入 db.auth('root','root') 1为正确 0为错误
+
+3.设置端口
+mongod --port 端口号 --dbpath 路径 --auth
+
+
+
+mongoose总结
+
+new mongoose.Schema({
+ String
+ Number
+ Date
+ Boolean
+ Buffer
+ ObjectId
+ Mixed
+ Array
+})
+mongoose.model('para1',userSchema,'para2')  para1为模型名字，para2为集合名字

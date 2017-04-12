@@ -1,0 +1,33 @@
+首先 不管是ejs还是jade模板  在node服务器中可以使用app.locals.变量名 = 变量值  //本地对象
+那么在ejs或者jade中都可以获得这个变量  <%=变量名%> 或 #{变量名}
+
+app.set('views',path.join(__dirname,'view'));
+// app.set('view engine','ejs');
+app.set('view engine','jade')
+app.engine('jade', require('jade').__express);  //这句话express内部会自动执行
+
+jade中没有标签符号<>，一个标签只需要写出对应单词即可 标签父子关系用缩进表示，
+同级则在同一缩进距离
+
+后台传到前台的值
+1. 标签名=变量名  这种做法是该标签名的内容只能是 该变量 不能再加入其它值
+2. #{变量名}
+
+
+文件包含include，可以用于模块化开发
+
+doctype html
+html
+	include ./layout/header.jade
+	body
+	h1 include demo
+	p content
+	include ./layout/footer.jade
+	
+	
+用extends也可以 不过只能加载一个 而且所有东西直接粘上去（没太懂有多大用处）
+
+ejs中 <% include test.ejs %>
+
+标签属性
+link(rel='stylesheet', href='/stylesheets/style.css') 括号，逗号隔开
