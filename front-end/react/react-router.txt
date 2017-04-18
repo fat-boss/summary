@@ -1,0 +1,28 @@
+如果是这样组件嵌套的
+<Route path="/" component={App}>
+			<Route path="/about" component={About} />
+			<Route path="/repos" component={Repo} />
+			<Route path="/repos/:id/:repoName" component={Repos} />
+</Route>
+
+App.js
+
+return <div>
+			<h1>React Router Tutorial</h1>
+			<ul role="nav">
+				<li><Link to="/about" activeStyle={{color:'red'}}>About</Link></li>
+				<li><Link to="/repos" activeStyle={{color:'green'}}>Repos</Link></li>
+			</ul>
+            {/* add this */}
+            {this.props.children}  //点击上面的路由 组件里的内容显示在这里
+	</div>
+	
+	
+Repos.js
+render(){
+        return (
+            <div>
+                <h2>{this.props.params.repoName}</h2>	//这里可以将path里的参数得到
+            </div>
+        )
+    }

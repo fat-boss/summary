@@ -1,5 +1,6 @@
 new Vue({
 	el: '#app',
+	template: '',
 	data:{},
 	methods:{},
 	filters:{},
@@ -11,6 +12,13 @@ new Vue({
 app.$watch('prop',function(oldVal,newVal){  //与上述的watch效果相同
 
 })
+
+template和components可以直接用render来替换(至少只有一个子组件可以这样用)
+
+// template: '<App/>',
+  render: h => h(App)
+  // components: { App }
+
 
 computed中的属性设置可以写成 同Object.defineProperty类似
 computed: {
@@ -96,3 +104,53 @@ Vue.component('example', {
     }
   }
 })
+
+
+vue-router
+
+const routes = [
+	{ 
+		path: '/foo',component: {
+			template: '<div>foo</div>'
+			}
+	}，
+	{
+		path: '/bar', component: {
+			template: '<div>bar</div>'
+		}
+	}
+]
+const router = new VueRouter({
+	routes
+})
+
+const vm = new Vue({
+	router
+}).$mount('#app')
+
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+  </p>
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
+</div>
+
+$route.params
+
+网上回答 assets和static的区别
+assets 文件夹的内容会被 webpack 打包到一起
+而 static 文件夹是浏览器直接去请求文件了
+
+assests放置的是组件的资源，static放置的是非组件的资源。
+
+比如说即static下的文件资源作为src路径传入组件中，文件的path是可以被解析了，而assets则不行。
+
+比如你写一个音乐播放器，类似的播放键和上一曲下一曲这些图标就应该作为组件资源放在assests里面，
+而不同音乐选集的封面这些是应该作为文件资源放在static下

@@ -1,0 +1,229 @@
+meta标签时html标记head区的一个关键标签，提供文档字符集、使用语言、作者等基本信息，
+以及对关键词和网页等级的设定，最大的作用是能够做搜索引擎优化（SEO）。
+
+meta标签可分为两大部分：http-equiv和name变量
+http-equiv相当于http的文件头作用，它可以向浏览器传回一些有用的信息，
+以帮助浏览器正确地显示网页内容（把content属性关联到HTTP头部。）
+
+<meta http-equiv="charset" content="iso-8859-1">
+<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="expires" content="31 Dec 2008">
+这样发送到浏览器的头部就应该包含：
+content-type: text/html
+charset:iso-8859-1
+expires:31 Dec 2008
+
+1 http-equiv中的属性及作用：
+
+1.1 content-type：设定页面使用的字符集
+
+1.2 X-UA-Compatible: IE8的专用标记，用来制定IE8浏览器去模拟某个特定版本的IE浏览器的渲染方式，
+以此来解决部分兼容问题
+
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+以上代码告诉IE浏览器，无论是否用DTD声明文档标准，IE8/9都会以IE7引擎来渲染页面。  
+
+<meta http-equiv="X-UA-Compatible" content="IE=8"> 
+以上代码告诉IE浏览器，IE8/9都会以IE8引擎来渲染页面。
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">  
+以上代码告诉IE浏览器，IE8/9及以后的版本都会以最高版本IE来渲染页面。
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+以上代码IE=edge告诉IE使用最新的引擎渲染网页，chrome=1则可以激活Chrome Frame.
+PS：谷歌添加一个插件：Google Chrome Frame（谷歌内嵌浏览器框架GCF），这个插件可以让用户的IE浏览器外不变，
+但用户在浏览网页时，实际上使用的是Google Chrome浏览器内核，而且支持IE6、7、8等多个版本的IE浏览器。
+
+1.3 expires：制定网页的过期时间，一旦网页过期，必须到服务器重新传输   
+<meta http-equiv="expires"content="Fri,12Jan200118:18:18GMT">
+PS：必须使用GMT的时间格式
+
+1.4 refresh:自动刷新并指向新页面
+<meta http-equiv="refresh" content="2;url=https://www.baiduc.com“>
+
+1.5 set-cookie: 如果网页过期，那么自动删除本地cookie。
+<meta http-equiv="Set-Cookie"content="cookie value=xxx;expires=Friday,12-Jan-200118:18:18GMT；path=/">
+PS：必须使用GMT的时间格式
+
+1.6 windows-target:强制页面在当前窗口中以独立的页面显示，可以防止自己的网页被别人当作一个frame页使用  //demo未实现？
+<meta http-equiv="window-target" content="_top">
+
+1.7 cache-control 缓存机制.
+<meta http-equiv="cache-control" content="no-cache">
+Public：指示响应可被任何缓存区缓存。
+Private：指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。
+no-cache：指示请求或响应消息不能缓存。
+no-store：用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。
+max-age：指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。
+min-fresh：指示客户机可以接收响应时间小于当前时间加上指定时间的响应。
+max-stale：指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。
+
+Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。
+实际上Cache-Control: no-cache是会被缓存的，
+只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。 
+
+关于Pragma:no-cache，跟Cache-Control: no-cache相同。Pragma: no-cache兼容http 1.0 ，
+Cache-Control: no-cache是http 1.1提供的。
+因此，Pragma: no-cache可以应用到http 1.0 和http 1.1，而Cache-Control: no-cache只能应用于http 1.1.
+
+2. name:name属性主要用于描述网页，与之对应的属性值为content，
+content中的内容主要是便于搜索引擎机器人查找信息和分类信息用的。
+
+2.1 author: 标注网页的作者
+<meta name="author" content="dashen" />
+
+2.2 keywords: 页面关键词，用于被搜索引擎收录
+<meta name="keywords" content="新闻,新闻中心, 新闻频道">
+
+2.3 description 页面描述，用于搜索引擎收录
+<meta name="description" content="新闻中心,包含有时政新闻、国内新闻、国际新闻、社会新闻、时事评论、新闻图片、新闻专题、新闻论坛、军事、历史、的专业时事报道门户网站">
+
+2.4 viewport： 用于控制页面缩放
+<meta name="viewport" content="width=device-width, initial-scale=1, 
+		maximum-scale=1, minimum-scale=1, user-scalable=no">
+	
+2.5 renderer: 制定双核浏览器默认以何种方式渲染页面
+<meta name="renderer" content="webkit">//默认webkit内核
+<meta name="renderer" content="ie-comp">//默认IE兼容模式
+<meta name="renderer" content="ie-stand">//默认IE标准模式
+
+2.6 generator: 说明网站采用的什么软件制作
+<meta name="generator" content="Microsoft"/>
+
+2.7 revised: 网页文档的修改时间
+<meta name="revised" content="设计网, 6/24/2015"/>
+
+2.8 robots: 用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。
+<meta name="robots"content="none">
+具体参数如下：
+
+信息参数为all：文件将被检索，且页面上的链接可以被查询；
+
+信息参数为none：文件将不被检索，且页面上的链接不可以被查询；
+
+信息参数为index：文件将被检索；
+
+信息参数为follow：页面上的链接可以被查询；
+
+信息参数为noindex：文件将不被检索，但页面上的链接可以被查询；
+
+信息参数为nofollow：文件将被检索，但页面上的链接不可以被查询；
+
+2.9 copyright: 网页版权信息
+<meta name="copyright" content="本页版权XXX所有。All Rights Reserved" />
+
+2.10 format-detection: 用来检测html里的一些格式的
+meta name="format-detection" content="telephone=no,email=no,adress=no"
+
+telephone=no就禁止了把数字转化为拨号链接！
+telephone=yes就开启了把数字转化为拨号链接，要开启转化功能，
+这个meta就不用写了,在默认是情况下就是开启！
+
+告诉设备不识别邮箱，点击之后不自动发送
+email=no禁止作为邮箱地址！
+email=yes就开启了把文字默认为邮箱地址，这个meta就不用写了,在默认是情况下就是开启！
+
+address=no禁止跳转至地图！
+address=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启！
+
+
+通过大网站对于meta的设置，可以看到常用的有，X-UA-Compatible、keywords、description。
+
+
+
+
+
+
+viewport涉及的单位
+
+分辨率：指设备显示器所能显示的像素有多少
+
+物理分辨率：指设备显示器所能显示最高的像素数
+
+DPI （Dots Per Inch）：每英寸的点数密度
+
+PPI（Pixels Per Inch）：每英寸的像素点
+
+DIP/DP（device independent pixels）: 设备独立像素, 这个由设备硬件决定。
+
+devicePixelRatio ： 设备像素比 （ window.devicePixelRatio = 物理分辨率 / dip ）
+
+PS：在计算机或移动屏幕中提到ppi和dpi其实都一样， 越高的PPI所呈现的内容越清晰。		
+		
+viewport: 其实手机浏览器装载页面是放在一个中间件里面的，这个中间件就是viewport
+概念：
+1.可视区: 就是设备上能看到页面的区域（这个长度不是固定的）
+2.设备宽度（device-width） : 这个就是DIP的值，即是设备独立像素，由设备硬件本身决定
+（iPhone4S 是 320， iPhone6 plus 是 414， 魅蓝 是 432 ）
+PS：device-width一般值范围是320—432
+	
+viewport属性
+
+width：viewport 的宽度
+
+height：viewport的高度 （很少使用）
+
+initial-scale：设置页面的初始缩放值
+
+minimum-scale：允许用户的最小缩放值
+
+maximum-scale：允许用户的最大缩放值
+
+user-scalable：是否允许用户进行缩放
+
+target-densitydpi（android才生效）：设备的密度等级	
+
+for ios
+width与initial-scale组合设置，有四种不同的情况（android上设initial-scale无效的），
+iPhone4S（它的设备宽度是320）上测试：
+
+1.设width（固定值），不设initial-scale
+
+ios浏览器会为了调整页面能够满屏显示，会自动计算缩放比，即initial-scale
+
+例如:设置width=640 
+
+　　 viewport width = 640px
+
+	 缩放比 =  320  / 640 = 0.5
+
+	 可视区宽度 = 设备宽度 / 缩放比  = 320 / 0.5 = 640px
+
+	 
+2.设width（固定值），设initial-scale = 1.0
+
+例如：设置width=640
+
+         viewport width = 640px  
+
+         缩放比 = 1.0
+
+         可视区宽度 = 设备宽度 / 缩放比  = 320 / 1.0 = 320px
+
+PS：所以如果这样设置，就会出现页面只显示了一半的情况。
+
+
+3.设width为device-width， 不设initial-scale
+
+没有设initial-scale情况下，initial-scale一直是1.0
+
+例如：设置width=device-width
+
+         viewport width = 320px （iPhone4s设备宽度）
+
+         缩放比 = 1.0
+
+         可视区宽度 = 设备宽度 / 缩放比  = 320 / 1.0 = 320px
+
+		 
+4.设width为device-width， 设initial-scale = 0.5
+
+例如：设置width=device-width
+
+         viewport width = 320px （iPhone4s设备宽度）
+
+         缩放比 = 0.5
+
+         可视区宽度 = 设备宽度 / 缩放比  = 320 / 0.5 = 640px
+
+PS：这个时候显示的页面是640px宽
