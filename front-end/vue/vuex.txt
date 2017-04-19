@@ -1,0 +1,28 @@
+mutations 只能是同步函数
+actions  可以操作异步  实质是actions函数中异步操作mutations的函数
+
+
+const store = new Vuex.Store({
+	state: {
+		count: 0
+	},
+	mutaions: {
+		increament (state) {
+			state.count++
+		}
+	},
+	actions: {
+		increament (context) {
+			//context.commit('increament');
+			setTimeout(function(){
+				context.commit('increament')
+			},1000)
+		}
+	}
+})
+
+actions中的函数用dispatch来触发同 redux
+
+store.dispatch({
+	type: 'increament'
+})

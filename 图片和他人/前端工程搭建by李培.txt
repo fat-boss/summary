@@ -1,0 +1,12 @@
+1、node.js（百度搜索下载安装包安装即可）
+2、全局安装webpack(npm install webpack -g)
+3、安装vue-cli（npm install -g vue-cli）
+4、安装vue-cli脚手架，这个工具可以自动帮你生成vue工程(vue init webpack my-project-name)
+5、安装好vue-cli之后进入目录(cd my-project-name)
+6、安装项目依赖，主要就是一些插件,开发工具之类的，这个时间稍微长点，但一般情况不超过10分钟(npm install)
+7、至此，项目准备工作完成，运行npm run dev即可启动工程访问(一般会自动打开页面)。
+8、npm run build可打包工程，生成可部署的文件(/dist)
+-Xms128m
+-Xmx512m
+
+
