@@ -1,0 +1,4 @@
+ Redux 是一个类 FLUX 框架，其数据流是单向的，所谓数据流的流动，其实就是指数据在各个层中的流动，
+ 简单说来是 action ? reducer ? store ? container ? component ? DOM 这么一个过程
+ （而触发 action 的过程是 DOM ? component ? container ? action）。
+ 各个层直接的依赖关系也基本是这样的，这样就明确的代码的依赖，减少耦合，降低了复杂度。

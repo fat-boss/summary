@@ -1,0 +1,27 @@
+class Header extends Component {
+  constructor () {
+    super()
+    console.log('construct')
+  }
+
+  componentWillMount () {
+    console.log('component will mount')
+  }
+
+  componentDidMount () {
+    console.log('component did mount')
+  }
+  render () {
+    console.log('render')
+    return (
+      <div>
+        <h1 className='title'>React –° È</h1>
+      </div>
+    )
+  }
+}
+
+construct
+component will mount 
+render
+component did mount
