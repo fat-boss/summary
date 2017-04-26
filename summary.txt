@@ -90,6 +90,8 @@ app.models.模型名称  可以通过这个来进行数据库操作   注意：模型名称首字母大写，如
 
 datasouces.json中配置mongodb
 
+在server.js中使用全局变量 global.x = xxx;  可以在其他models下面的js文件中global.x访问该变量
+
 "mongoDs": {
     "host": "localhost",
     "database": "test2",
