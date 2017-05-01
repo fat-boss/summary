@@ -227,3 +227,10 @@ PS：所以如果这样设置，就会出现页面只显示了一半的情况。
          可视区宽度 = 设备宽度 / 缩放比  = 320 / 0.5 = 640px
 
 PS：这个时候显示的页面是640px宽
+
+
+
+
+visual viewport: window.innerWidth/innerHeight;
+layout viewport: document.documentElement.clientWidth/clientHeight
+html: document.documentElement.offsetWidth/Height
