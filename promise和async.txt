@@ -1,0 +1,8 @@
+按顺序执行
+var async = require('async');
+async.waterfall(functionArray,funN,funN+1,function(err,result){
+
+})
+
+同时进行
+promise.all
