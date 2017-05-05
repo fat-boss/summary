@@ -1,1 +1,21 @@
 解析js文件用babel-loader时，需要写全（ps：以后用loader都写全，以免引起未知bug）
+
+module.exports = {
+	entry: '',
+	output: {
+		path: ,
+		filename
+	},
+	module: {
+		loaders: [
+			{
+				test: //,
+				exclude: //,
+				loader: '',
+				query: {
+					presets: []
+				}
+			}
+		]
+	}
+}

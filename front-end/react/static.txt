@@ -1,0 +1,6 @@
+static 是属于es7的草案 在class compo extends Component {
+	static defalutProps = {}
+	static propTypes = {}   
+	//书写这些要报错。。。！！！
+	//需要安装 babel-preset-stage-0
+}
