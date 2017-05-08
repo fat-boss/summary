@@ -1,6 +1,10 @@
 static 是属于es7的草案 在class compo extends Component {
-	static defalutProps = {}
-	static propTypes = {}   
+	static defaultProps = {
+		comments: []
+	}
+	static propTypes = {
+		comment: PropTypes.object  // import {PropTypes} from 'react'
+	}   
 	//书写这些要报错。。。！！！
 	//需要安装 babel-preset-stage-0
 }

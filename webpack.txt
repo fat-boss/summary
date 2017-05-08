@@ -19,3 +19,19 @@ module.exports = {
 		]
 	}
 }
+
+webpack热加载 （react版本）
+
+module.exports = {
+	...
+	
+	devServer: {
+		contentBase: '' //路径 默认是当前文件（webpack.config.js）目录下
+	}
+}
+
+package.json文件配置
+
+“scripts”: {
+	"start": “webpack-dev-server --incline-base”
+}
