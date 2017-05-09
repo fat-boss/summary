@@ -1,0 +1,5 @@
+#box{
+	display: flex;
+	justify-content: space-between; //水平分散（到两边底） 如果用center 水平垂直居中（紧挨着）
+	align-items: center; //垂直居中
+}
