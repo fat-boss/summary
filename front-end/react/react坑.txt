@@ -1,0 +1,22 @@
+需要--save-dev webpack@2以上
+需要 babel-core 版本上去的b事也多
+import jsx文件时 要加后缀
+webpack.config.js中的output path 路径 需要绝对（以前也不需要） __dirname+'/...'
+
+react-router 4.0以上不能用 browserHistory和hashHistory(不知道怎么代替） 用v2.8.1
+
+在编写新组件时 React必须写出来不然报错
+
+import React,{Component} from 'react';
+
+class A extends Component {   //即使没有显示的使用React ，但是在浏览器执行内部(webpack)是使用了的，必须在上面import出来
+	render () {
+		return (
+			<div>123</div>
+		)
+	}
+}
+
+react-addons-css-transition-group 提示将会废除 使用 react-transition-group
+
+使用redux时 dispatch里面的函数要先执行一次？在connect的时候?
