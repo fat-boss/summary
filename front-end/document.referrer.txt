@@ -1,0 +1,26 @@
+移动端返回上一页
+可以通过这个属性获取上一页url地址
+window.location.href = document.referrer //返回上一页
+如果没有就直接跳首页
+
+if (typeof document.referrer === '') {
+    // 没有来源页面信息的时候，改成首页URL地址
+    $('.jsBack').attr('href', '/');
+}
+
+无法获取 referrer 信息的情况
+
+下面的场景无法获得 referrer 信息，以下前8条属于【张鑫旭】：
+
+直接在浏览器中输入地址
+使用location.reload()刷新（location.href或者location.replace()刷新有信息）
+在微信对话框中，点击进入微信自身浏览器
+扫码进入微信或QQ的浏览器
+直接新窗口打开一个页面
+从https的网站直接进入一个http协议的网站（Chrome下亲测）
+a标签设置rel="noreferrer"（兼容IE7+）
+meta标签来控制不让浏览器发送referer
+点击 flash 内部链接
+Chrome4.0以下，IE 5.5+以下返回空的字符串
+使用 修改 Location 进行页面导航的方法，会导致在IE下丢失 referrer，这可能是IE的一个BUG
+跨域
