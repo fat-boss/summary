@@ -1,0 +1,1 @@
+通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染

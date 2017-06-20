@@ -1,0 +1,53 @@
+var app = angular.module('myApp',[],function($provide){
+	$provide.provider('service1',function(){
+		this.$get = function () {  //使用provider函数时，必须有这个$get函数，否则会报错
+			return ....
+		}
+ 	})
+	
+	$provide.factory('service2',function(){
+	
+		return ...
+	})
+	
+	$provide.service('service3',function(){·
+	
+		return {}  //区别1：不能直接返回字符串  factory和provider可以
+						 2. service里面可以使用this
+	})
+})
+
+ app.service('myService',['$http',function($http){   //里面的依赖注入 可以查看api provider中里面有的才能注入 没有scope
+        this.request = function(){
+            $http.get('http://localhost:8888/test.do')
+                .then(res=>{
+                    console.log(res.data);
+                    return res.data;
+                })
+        }
+    }])
+
+也可以直接用app 来进行自定义服务创建
+app.service()
+app.factory()
+app.provider()
+
+第三种则是通过config'
+
+app.config(function(){$provide}{
+	//同第一种方式
+})
+
+provider是唯一一种可以传进config函数的service
+
+app.provider('providerService',function(){
+	this.name = '';
+	this.$get = function() {
+		return ...
+	}
+})
+
+
+app.config(function(providerServiceProvider){ //在自定义服务名字后面加入Provider
+	providerServiceProvider.name = 'lxy'   //通过这种方式 可以改变服务中的属性
+})
