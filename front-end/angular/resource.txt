@@ -1,0 +1,30 @@
+后台传值：
+	get： 字符串、对象
+	query: 数组
+	
+关于参数
+	var rest = $resource('http://localhost:8888/:test.:type');
+             rest.get({test: 'test',type:'do'},function(data){
+                 console.log(data[0])
+             })
+			 
+	等同于 var rest = $resource('http://localhost:8888/:test.:type'，{test: 'test',type:'do'})
+             rest.get(function(data){
+                 console.log(data[0])
+             })
+			 
+	如果是向后台传数据的话 需要加@符号
+	
+	var rest = $resource('http://localhost:8888/:test.:type',{test: 'test',type:'do',id:'@id'})
+             rest.get({id:20},function(data){
+                 console.log(data[0])
+             })
+	后台可以用 req.query.id获取到20
+	
+	可以自定义方法， 作为第三个参数 {函数名:{method:'GET',params:{}}}  //params中同样可以使用@来进行动态传参
+	var rest = $resource('http://localhost:8888/:test.:type',{test: 'test',type:'do',id:'@id'},
+                 {myFun: {method:'GET',params:{data:'@data'}}})
+             rest.myFun({id:20,data:'testData'},function(data){
+                 console.log(data[0])
+             })
+         })
