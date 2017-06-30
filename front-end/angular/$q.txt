@@ -1,0 +1,10 @@
+function defer () {
+var defered = $q.defer();
+
+	//dosomething
+	defered.resolve(val)
+
+return defered.promise;
+}
+
+defer().then(....)
