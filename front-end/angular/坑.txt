@@ -1,1 +1,2 @@
-通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
+1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
+2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
