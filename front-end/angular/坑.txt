@@ -4,3 +4,5 @@
 
 
 ionic 中的$http 成功失败是 success error 和 finally ，angular1 后面版本则是promise的 then catch
+
+$parse: lval  controller 中没有定义 在页面中却使用了的变量
