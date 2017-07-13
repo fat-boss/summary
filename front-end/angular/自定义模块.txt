@@ -1,0 +1,7 @@
+angular.module('myApp.controller',[])
+.controller......
+.factory.....
+
+
+
+angualr.module('myApp',['myApp.controller']) //这样就可以使用上述的factory 且controller不会报错
