@@ -1,0 +1,5 @@
+在controller中可以直接写
+
+var platform = ionic.Platform;
+
+platform.isAndroid()
