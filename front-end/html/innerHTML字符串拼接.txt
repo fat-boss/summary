@@ -1,0 +1,13 @@
+document.getElementById('box').innerHTML =
+        '<select>'+
+        '<option value="1" '+  (test===1 ? "selected": '')+  '>1</option>'+  //这里涉及到计算的要用括号括起来 否则不会生效
+        '<option value="2" '+  (test===2 ? 'selected' : '')+ '>2</option>'+
+        '<option value="3" '+  (test===3 ? 'selected' : '')+ '>3</option>'+
+        '<option value="4" '+  (test===4 ? 'selected' : '')+ '>4</option>'+
+        '</select>'
+
+radio 和 select（option） 默认选中直接加一个 checked 或者 selected属性 不需要给属性赋值，更不要写 属性=true/false 
+
+radio 默认选中 jq不知何原因 使用attr方法不能选中成功 ，还是使用原生方法
+
+document.selectorQuery('input[type="radio"]')[0].checked = true/false;

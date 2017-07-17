@@ -1,13 +1,11 @@
-<<<<<<< HEAD
-通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
-
+1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
+2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
 嵌套自路由中的url参数  不要把父元素的地址写进去！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！11
 
 
 ionic 中的$http 成功失败是 success error 和 finally ，angular1 后面版本则是promise的 then catch
 
 $parse: lval  controller 中没有定义 在页面中却使用了的变量
-=======
-1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
-2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
->>>>>>> 6eb3b44d873c7927bd01bcfaf12c82716406f63f
+
+
+
