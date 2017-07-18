@@ -1,11 +1,164 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
 2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
 =======
 通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
 
+=======
+1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
+2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
+>>>>>>> 313b835a54e0eba2fbe258226a2bf2ec8e9e0ca8
 嵌套自路由中的url参数  不要把父元素的地址写进去！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！11
 
 
 ionic 中的$http 成功失败是 success error 和 finally ，angular1 后面版本则是promise的 then catch
+<<<<<<< HEAD
 >>>>>>> 523d368dda7b82d3c9d4eb03bccd6bc335ed53d2
+=======
+
+$parse: lval  controller 中没有定义 在页面中却使用了的变量
+
+
+router中如果要进行传参跳转页面 就使用a标签 href属性去跳转  不要使用$state.go()去跳  否则会出现bug！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+
+
+在生命周期函数中定义的变量，函数外不能访问
+
+以前的ionic框架里的文件垃圾不行（tab跳转总要出错），用新上传的
+
+
+actionSheet android样式没有
+
+1.可以重写以下样式
+.platform-android .action-sheet-backdrop {
+    -webkit-transition: background-color 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.platform-android .action-sheet-backdrop.active {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.platform-android .action-sheet-wrapper {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    -webkit-transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 500ms;
+    transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 500ms;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.platform-android .action-sheet-up {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.platform-android .action-sheet {
+    margin-left: 8px;
+    margin-right: 8px;
+    width: auto;
+    z-index: 11;
+    overflow: hidden;
+}
+
+.platform-android .action-sheet .button {
+    display: block;
+    padding: 1px;
+    width: 100%;
+    border-radius: 0;
+    border-color: #d1d3d6;
+    background-color: transparent;
+    color: #007aff;
+    font-size: 21px;
+}
+
+.platform-android .action-sheet .button:hover {
+    color: #007aff;
+}
+
+.platform-android .action-sheet .button.destructive {
+    color: #ff3b30;
+}
+
+.platform-android .action-sheet .button.destructive:hover {
+    color: #ff3b30;
+}
+
+.platform-android .action-sheet .button.active, .platform-android .action-sheet .button.activated {
+    box-shadow: none;
+    border-color: #d1d3d6;
+    color: #007aff;
+    background: #e4e5e7;
+}
+
+.platform-android .action-sheet-has-icons .icon {
+    position: absolute;
+    left: 16px;
+}
+
+.platform-android .action-sheet-title {
+    padding: 16px;
+    color: #8f8f8f;
+    text-align: center;
+    font-size: 13px;
+}
+
+.platform-android .action-sheet-group {
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.platform-android .action-sheet-group .button {
+    border-width: 1px 0px 0px 0px;
+}
+
+.platform-android .action-sheet-group .button:first-child:last-child {
+    border-width: 0;
+}
+
+.platform-android .action-sheet-options {
+    background: #f1f2f3;
+}
+
+.platform-android .action-sheet-cancel .button {
+    font-weight: 500;
+}
+
+.platform-android .action-sheet-open {
+    pointer-events: none;
+}
+
+.platform-android .action-sheet-open.modal-open .modal {
+    pointer-events: none;
+}
+
+.platform-android .action-sheet-open .action-sheet-backdrop {
+    pointer-events: auto;
+}
+
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
+    text-align: center;
+}
+
+.platform-android .action-sheet-cancel {
+    display: block;
+}
+
+2.将ionic.css关于以上属性的注释掉（还是第一种方便）
+>>>>>>> 313b835a54e0eba2fbe258226a2bf2ec8e9e0ca8
