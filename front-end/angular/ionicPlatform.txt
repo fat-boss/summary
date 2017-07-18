@@ -1,0 +1,36 @@
+$ionicPlatfom.ready(function(){
+	//设备就绪就触发的函数
+})
+
+$ionic.registerBackButtonAction(func,number) //硬件返回键执行的回调函数,number是优先级执行
+
+number 用ionic自带的IONIC_BACK_PRIORITY
+
+console.log(IONIC_BACK_PRIORITY)
+
+actionSheet
+300
+
+loading
+500
+
+modal
+200
+
+popup
+400
+
+sideMenu
+150
+
+view
+100
+
+
+返回键优先级定义，主要用途是返回键行为的优先级定义，例如当有弹出框时（优先级400），按返回键取消弹出框，不回退页面（优先级100）
+var PLATFORM_BACK_BUTTON_PRIORITY_VIEW = 100;  
+var PLATFORM_BACK_BUTTON_PRIORITY_SIDE_MENU = 150;  
+var PLATFORM_BACK_BUTTON_PRIORITY_MODAL = 200;  
+var PLATFORM_BACK_BUTTON_PRIORITY_ACTION_SHEET = 300;  
+var PLATFORM_BACK_BUTTON_PRIORITY_POPUP = 400;  
+var PLATFORM_BACK_BUTTON_PRIORITY_LOADING = 500; 

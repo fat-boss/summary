@@ -1,0 +1,8 @@
+在app.js中写 路由 state的时候 如果跳转的页面需要参数，在state中必须使用 params进行参数初始化，否则报错
+
+$urlRouterProvider.otherwise(function($injector){
+
+	var state = $injector.get('$state');
+
+	state.go(....)
+})

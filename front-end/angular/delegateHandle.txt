@@ -1,0 +1,23 @@
+句柄,有特殊控制作用
+
+<body ng-controller="MainCtrl">
+  <ion-content delegate-handle="mainScroll">
+    <button ng-click="scrollMainToTop()">
+      滚动内容到顶部!
+    </button>
+    <ion-scroll delegate-handle="small" style="height: 100px;">
+      <button ng-click="scrollSmallToTop()">
+        滚动小区域到顶部!
+      </button>
+    </ion-scroll>
+  </ion-content>
+</body>
+
+function MainCtrl($scope, $ionicScrollDelegate) {
+  $scope.scrollMainToTop = function() {
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
+  };
+  $scope.scrollSmallToTop = function() {
+    $ionicScrollDelegate.$getByHandle('small').scrollTop();
+  };
+}

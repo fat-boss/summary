@@ -1,2 +1,11 @@
+<<<<<<< HEAD
 1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
 2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
+=======
+通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
+
+嵌套自路由中的url参数  不要把父元素的地址写进去！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！11
+
+
+ionic 中的$http 成功失败是 success error 和 finally ，angular1 后面版本则是promise的 then catch
+>>>>>>> 523d368dda7b82d3c9d4eb03bccd6bc335ed53d2

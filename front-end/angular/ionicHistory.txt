@@ -1,0 +1,16 @@
+console.log($ionicHistory.backView());
+
+{"viewId":"ion5",
+"index":0,
+"historyId":"ion2",
+"backViewId":null,
+"forwardViewId":"ion6",
+"stateId":"tab.tab1",  //可以通过这个进行逻辑判断
+"stateName":"tab.tab1",
+"url":"/tab/tab1",
+"canSwipeBack":true,
+"title":"tab1"}
+
+var backView = $ionicHistory.backView();
+
+backView.go() 返回前一页

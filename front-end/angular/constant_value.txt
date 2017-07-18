@@ -1,0 +1,8 @@
+定义全局变量
+
+
+phonecatApp.value('test',{"test":"test222","test1":"test111"});  //方法2定义全局变量  
+  
+phonecatApp.constant('constanttest', 'this is constanttest');  
+
+这种方式定义的全局变量需要在controller中去引入
