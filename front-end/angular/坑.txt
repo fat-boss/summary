@@ -1,9 +1,13 @@
+
 1.通过nodejs下载下来的angular（1.6.4版本 ） 用不了ngRoute路由 虽然不报错 但是ng-view不会路由渲染
 2.引入ionic.bundle.js就不用引入angular.js了，不然会报些莫名其妙的错
+
+
 嵌套自路由中的url参数  不要把父元素的地址写进去！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！11
 
 
 ionic 中的$http 成功失败是 success error 和 finally ，angular1 后面版本则是promise的 then catch
+
 
 $parse: lval  controller 中没有定义 在页面中却使用了的变量
 
@@ -17,9 +21,9 @@ router中如果要进行传参跳转页面 就使用a标签 href属性去跳转  不要使用$state.go()去
 以前的ionic框架里的文件垃圾不行（tab跳转总要出错），用新上传的
 
 
-
-
 ion-nav-buttons 标签如果要 ng-show  ng-if  应该是写在这个标签的子标签 写在自身没有效果
 
 tabs中badge的值 如果是0 在js中使其为字符串'0' 否则不显示 动态还会有bug
 
+
+
