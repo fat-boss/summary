@@ -1,0 +1,18 @@
+ionic中有自己的监听后退键 $ionicPlatform.registerBackButoonAction() ... 可查api
+
+在某些应用中（天府安逸），只能监听一次，第二次进入程序就监听不了了（原因目前未找到）
+
+解决方法：使用cordova监听后退键函数
+
+1.首先需要设备ready状态
+document.addEventListener('deviceready',onDeviceReady,false);
+
+2.在设备ready监听函数中再监听后退键
+
+即： function onDeviceReady () {
+	document.addEventListener('backbutton',dosomething,false);
+}
+
+function dosomething () {
+	//监听后退事件任务
+}
