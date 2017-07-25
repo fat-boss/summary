@@ -1,0 +1,7 @@
+
+
+<ion-slide-box on-slide-changed="slideChanged($index)" show-pager="false"></ion-slide-box>
+
+$ionicSlideBoxDelegate.previous();
+$ionicSlideBoxDelegate.next();
+这些会触发slideChanged函数
