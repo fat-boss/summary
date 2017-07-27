@@ -1,7 +1,19 @@
 
 
-<ion-slide-box on-slide-changed="slideChanged($index)" show-pager="false"></ion-slide-box>
+<ion-slide-box on-slide-changed="slideChanged($index)" show-pager="false">
+	<ion-slide ng-repeat="title in titles">
+		{{$index}}
+	<ion-slide>
+</ion-slide-box>
+
+上式中的 ion-slide-box中的$index(记为index1) 和 ion-slide中的$index(记为index2)是不同的
+前者是下一页的索引
+后者是当前索引（很好理解）
+如果是往后一页翻 则 index1 = index2+1,如果是往前一页翻 则 index1 = index2-1;
+
 
 $ionicSlideBoxDelegate.previous();
 $ionicSlideBoxDelegate.next();
 这些会触发slideChanged函数
+
+

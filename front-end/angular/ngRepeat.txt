@@ -1,0 +1,24 @@
+track by是angular1.2后新加入的。ng-repeat会为每一次元素加上一个hashkey $$hashKey来识别每一个元素，
+当我们从后端重新获取数据时，即使数据完全一样，但是由于hashKey不一样，angular会删除之前的所有dom，
+重新生成新的dom。这样效率就会大大降低。可以理解为ng-repeat默认是 track by $$hashKey的。
+所以，我们应该使用一些不会变的东西来作为标识，比如后端数据的id.
+
+[  
+  {  
+    "id": 1,  
+    "name": "task1"  
+  },  
+  {  
+    "id": 2,  
+    "name": "task2"  
+  }  
+]  
+
+<li ng-repeat="task in taskList track by task.id"></li>  
+
+这样当重新获取数据时，由于id没有变，angular就不会去删除原来的dom，只会更新其中的内容，不同的id再添加新的dom。效率就能提升了。这相当于react中data-reactid的功能，这样angular并不比react慢。
+特别说明：
+
+1.track by 一定要放在orderBy之后，否则会影响orderBy的效果；
+
+2.当单一数组如["a","a"]有重复元素时，需要使用track by $index来保证两个元素都会渲染，否则只会渲染一个
