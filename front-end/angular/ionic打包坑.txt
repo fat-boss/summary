@@ -1,0 +1,19 @@
+1. ionic platform add android 遇见不能加载 
+1) 网断了或不好
+2) 这个加载使用的是npm 因为使用了cnpm 所以npm使用不了,解决方法 cnpm install nrm -g
+  nrm use taobao
+
+2. 上面问题解决后使用 ionic build(emulate) android 报错resources之类的图标问题
+	使用ionic resources并不能解决问题，报其他的错，解决方法：在config.xml文件中 将name=Android的标签直接写成闭合标签，里面的内容全部删掉
+	<platform name="android" />
+
+3. 上面问题解决后，依旧执行build/emulate 这次去下载一个gradle的压缩包下载半天一直下不了,
+	解决方法：我们找到指定路径的文件，如下：
+
+			yourproject/platforms/android/cordova/lib/builders/GradleBuilder.js
+			然后修改成：
+
+			var distributionUrl = process.env['CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL'] || '../gradle-2.4-all.zip'; //zip安装包自己下载,下载完后放到yourproject/platforms/android/gradle
+			
+4. 上面问题解决后继续执行build/emulate，会下载一大堆东西 下载了十几分钟, 这次报错有提示
+platform: android-25 即sdk版本没有下载

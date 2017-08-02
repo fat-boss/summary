@@ -16,4 +16,6 @@ $ionicSlideBoxDelegate.previous();
 $ionicSlideBoxDelegate.next();
 这些会触发slideChanged函数
 
+不管用没用到 ng-repeat动态生成 ion-slide 都要在on-slide-changed事件中使用 $ionicSlideDelegate.update(),不然可能会遇到无法展示的问题
+
 

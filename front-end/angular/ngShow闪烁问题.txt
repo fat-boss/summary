@@ -1,0 +1,10 @@
+破狼：http://www.cnblogs.com/whitewolf/p/3495822.html
+
+
+手动加入以下css样式
+
+<style type="text/css">
+@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-start{clip:rect(0,auto,auto,0);-ms-zoom:1.0001;}.ng-animate-active{clip:rect(-1px,auto,auto,0);-ms-zoom:1;}
+</style>
+
+在闪烁的标签上（使用 ng-show的标签） 加入class="ng-cloak"
