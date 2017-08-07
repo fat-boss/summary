@@ -1,0 +1,51 @@
+//常用参数如下：
+angular.module('app', [])
+.directive('myDirective', function() {
+    return {
+    restrict: String,                
+    priority: Number,
+    terminal: Boolean,
+    template: String or Template Function:
+    function(tElement, tAttrs) {...},
+    templateUrl: String,
+    replace: Boolean or String,
+    scope: Boolean or Object,
+    transclude: Boolean,
+    controller: String or
+    function(scope, element, attrs, transclude, otherInjectables) { ... },
+    controllerAs: String,
+    require: String,
+    link: function(scope, iElement, iAttrs) { ... },
+    compile: // 返回一个对象或连接函数，如下所示：
+    function(tElement, tAttrs, transclude) {
+        return {
+            pre: function(scope, iElement, iAttrs, controller) { ... },
+            post: function(scope, iElement, iAttrs, controller) { ... }
+           }
+        return function postLink(...) { ... }
+        }
+    };
+ });
+
+内部参数： 
+restrict：String，E（元素）<my-directive></my-directive> A（属性，默认值）<div my-directive="expression"></div> C（类名）<div class="my-directive:expression;"></div> M（注释）<--directive:my-directive expression-->
+priority: Number，指令执行优先级
+template: String，指令链接DOM模板，例如“<h1>{{head}}</h1>”
+templateUrl:String，DOM模板路径
+replace: Boolean，指令链接模板是否替换原有元素，
+
+对外参数：
+scope参数的作用是，隔离指令与所在控制器间的作用域、隔离指令与指令间的作用域。
+
+scope参数是可选的，默认值为false，可选true、对象{}；
+
+false：共享父域
+true：继承父域，且新建独立作用域  //如果修改了子域的一个属性值，在父域不会修改，并且这时候再去修改父域的值，子域不会变了
+对象{}：不继承父域，且新建独立作用域
+	@：单向引用父域的值，传递的值必须是字符串且在指令里引用时必须加上{{}}；//即父域修改值，子域一定会跟着修改，但子域修改，父域不会修改（同上述的true有所区别）
+
+	=：双向绑定子域和父域；  //不用加{{}}
+
+	&：单向绑定父域，以便在其中运行函数 //这时候引用的是父域的函数，执行环境也是父域的环境（里面的$scope是父域的scope）
+
+require:
