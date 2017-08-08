@@ -12,7 +12,7 @@
 
 .state('tab.tab1',{
 	url: '/tab1',
-	views: {
+	views: {               //记住这里一定是views 不是view!!!!!!!!!!!!!!!!!!!!!!!! 不然url会变 但是不会跳转页面
 		'tab-tab1' : {    //在tabs.html 中有 <ion-nav-view name="tab-tab1"></ion-nav-view>  根据name属性来写值
 			templateUrl: 'templates/tab1.html'
 		}
@@ -20,7 +20,8 @@
 })
 
 <ion-tabs class="tabs-striped tabs-stable">
-  <ion-tab title="tab1" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/tab1">  //这里要用href 不能用ui-sref 否则不能正常跳转
+  <ion-tab title="tab1" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/tab1">  //这里要用href 
+<ion-tab title="tab1" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="tab.tab1">	//使用ui-sref																							//
     <ion-nav-view name="tab-tab1"></ion-nav-view>
   </ion-tab>
   <ion-tab title="tab2" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/tab2"> //记住是 #/
