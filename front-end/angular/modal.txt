@@ -1,0 +1,7 @@
+modal在打开以后如果关闭，再打开，会重新生成一个modal，之前打开的并没有删除
+所以在关闭的时候要删除
+
+ $scope.modal.hide().then(function(){
+            	$scope.modal.remove();
+            });
+要使用then 否则没有了动画效果, 使用timeout都不行
