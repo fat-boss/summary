@@ -25,5 +25,4 @@ ion-nav-buttons 标签如果要 ng-show  ng-if  应该是写在这个标签的子标签 写在自身没
 
 tabs中badge的值 如果是0 在js中使其为字符串'0' 否则不显示 动态还会有bug
 
-
-
+data-tap-disabled="true" 父元素点击子元素的内容

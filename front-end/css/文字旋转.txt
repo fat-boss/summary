@@ -1,0 +1,8 @@
+width: 130vh;
+height:100vw;
+margin-top: calc(65vh - 50vw);
+margin-bottom: auto;
+margin-left: calc(50vw - 65vh);
+transform: rotate(90deg);
+padding: 0;
+transform-origin: center center;
