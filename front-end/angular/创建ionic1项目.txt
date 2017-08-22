@@ -1,0 +1,1 @@
+ionic start app --type=ionic1
