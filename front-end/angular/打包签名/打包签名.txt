@@ -1,0 +1,12 @@
+在哪个文件夹下打开命令行，配置的keystore就在哪里
+1.生成keystore
+keytool -genkey -v -keystore yourApp.keystore -alias yourApp -keyalg RSA -keysize 2048 -validity 10000
+
+2.cordova build --release android 生成没有签名的apk
+
+3.jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore yourApp.keystore android-release-unsigned.apk yourApp
+完成签名
+（这里会警告 未提供tsa或tsacert）
+
+4.新命名 zipalign 在java 的bin中没有 需要重新下载
+zipalign -v 4 android-release-unsigned newApp.apk
