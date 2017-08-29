@@ -1,0 +1,14 @@
+装饰器是一项实验性特性，在未来的版本中可能会发生改变。
+
+若要启用实验性的装饰器特性，你必须在命令行或tsconfig.json里启用experimentalDecorators编译器选项：
+
+命令行:
+tsc --target ES5 --experimentalDecorators
+
+tsconfig.json:
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "experimentalDecorators": true
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ng2model",
+  "version": "1.0.0",
+  "description": "this is the model of angular2, when start a new project this can be copied.",
+  "main": "index.js",
+  "scripts": {
+    "server": "webpack-dev-server --inline --colors --progress --port 3000",
+    "start": "npm run server"
+  },
+  "author": "lxy",
+  "devDependencies": {
+    "@types/core-js": "^0.9.43",
+    "ts-loader": "2.3.4",
+    "typescript": "2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "@angular/core": "^4.3.6",
+    "@angular/common": "^4.3.6",
+    "@angular/compiler": "^4.3.6",
+    "@angular/platform-browser": "^4.3.6",
+    "@angular/platform-browser-dynamic": "^4.3.6",
+    "core-js": "^2.5.0",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.3",
+    "zone.js": "0.8.17"
+  },
+  "license": "ISC"
+}

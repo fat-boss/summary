@@ -1,0 +1,1 @@
+在各个文件中的import from后面的文件提示可以将.ts  .jsx 这种后缀省略，但是只要省略webpack就报错 还有loader也不能省略都写全称
