@@ -1,0 +1,4 @@
+adb shell
+logcat | grep chromium
+
+可以在命令行看到 chrome的控制台输出（主要是针对release版本的app）
