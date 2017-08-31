@@ -1,0 +1,12 @@
+html中 有<input type="text" value="{{name}}" [(ngModel)]="name" />
+
+必须在根模块app.module.ts中
+
+import {FormsModule} from '@angular/forms'
+@NgModule({
+    declarations: [AppComponent,TestComponent],
+    imports: [BrowserModule,FormsModule],  //这里导入
+    bootstrap: [AppComponent,TestComponent]
+})
+
+否则会报错
