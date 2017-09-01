@@ -1,0 +1,9 @@
+1) item: {a:number} = {a:123}
+	item: {a:number,b:string} = {a: 123, b:'123'}
+2）item2: {[a:number]:number} ={123:123};
+
+1. 冒号后面是括号，则说明item2是一个对象；
+
+2. 第一种形式，说明这个对象只有a或者a和b的属性（如果需要自行添加）, 
+	第二种形式！！！！，这是一个统一的写法，里面的a可以改成任意单次,仅仅表示这个对象的属性，[a:number]或[a:string]表示属性类型为number|string
+	只有这两种类型, 后面的: number 代表值的属性，这个属性随便什么都行（typescript的基本类型,包括类）
