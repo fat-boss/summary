@@ -1,0 +1,27 @@
+1.
+<div [title]="titleText">Hello world</div>
+<div bind-title="titleText">Hello world</div>
+
+2.内置指令
+<div [ngStyle]="styles">Hello world</div>
+
+3.自定义属性
+<div [user]="titleText">Hello world</div> //用于父子传值
+
+4.标签特性
+<td [attr.colspan]={{1+2}}></td>
+猜测 <img [attr.src]={{src}}>
+
+5.css类
+[class]会重写标签的全部class
+ng1.x 的ng-class 在这里使用[class.className]="flag" 
+
+6.style
+<button [style.background-color]="canClick?‘blue’:'red'">
+带有单位的样式
+
+<button [style.font-size.px]="isLarge?18:13"> //px 为单位 
+<button [style.width.%]="!isHalf?100:50"> // % 为单位  也可以使用驼峰命名法
+
+7.模板内容
+<div>{{content}}</div> => <div [innerHTML]="content"></div>

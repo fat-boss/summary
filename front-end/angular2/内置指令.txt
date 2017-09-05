@@ -1,0 +1,15 @@
+class: <div [ngClass]="setClass()">; 同ng1.x
+
+style: <div [ngStyle]="setStyle()">; 同ng1.x 模板语句中的值均为一个对象，同上
+
+if: <div *ngIf="collect.length===0">
+
+switch: 
+span [ngSwitch]="item"
+	span *ngSwicthCase="1"
+	span *ngSwicthCase="2"
+	span *ngSwitchDefault
+	
+for: div *ngFor=“let item of items;let i = index” 
+		{{i}}
+	 /div

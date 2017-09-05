@@ -1,0 +1,6 @@
+如果是自定义标签
+<list-item #list></list-item> //list指向定义的component类
+
+如果是原生标签
+<input #myInput id="input"/>// myInput指向 document.getElementById('input')
+{{myInput.value}}
