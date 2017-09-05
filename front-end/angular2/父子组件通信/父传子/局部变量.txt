@@ -1,0 +1,3 @@
+<list-item  (sonClick)="removeSth(listItem)" [item]="item.age" #listItem>  //#+变量名生成局部变量
+            <span class="select">select</span>
+        </list-item>

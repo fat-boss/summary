@@ -1,0 +1,20 @@
+import {Component,OnInit,OnChanges,SimpleChanges,ViewChild} from '@angular/core';
+import {ListItemComponent} from './listItem/list-item.ts'
+@Component({
+    selector: 'list',
+    templateUrl: 'src/list/list.html'
+})
+export class ListComponent implements OnInit, OnChanges{
+    private items: any[] = [{name:'lxy',age:23}];
+    @ViewChild(ListItemComponent) sonComponent: ListItemComponent
+    pushSth() {
+        this.items[0].age++;
+    }
+    removeSth(item:any) {
+         console.log(item)
+         this.sonComponent.testItem++;
+         console.log(this.sonComponent.testItem)
+         this.sonComponent.triggerByFa()
+      
+    }
+}

@@ -1,0 +1,24 @@
+list.html
+<list-item  (sonClick)="removeSth()" [item]="item.age"></list-item>
+
+list-item.ts
+item1: any = 1;
+    item2: any = 1;
+    @Input()
+    set item(item) {
+        // console.log(item)
+        // console.log(this.item2)
+        this.item1 = item;
+        this.item2++;
+    }
+    get item() {
+        return this.item1;
+    }
+	
+	@Output() sonClick = new EventEmitter();
+	
+	myClick(e:any) {
+        e.stopPropagation();
+        // console.log(this.sonClick.emit)
+        this.sonClick.emit();
+    }
