@@ -1,0 +1,14 @@
+import {Pipe,PipeTransform} from "@angular/core";
+@Pipe({
+    name: 'namePipe'
+})
+export class NamePipe implements PipeTransform {
+    transform(nameArr:any[],val:string):any[] {
+        return nameArr.filter((v:string)=>{return v.match('^'+val)})
+    }
+}
+
+用法：
+<div *ngFor="let name of names | namePipe:'罗'">
+    <span>{{name}}</span>
+</div>
