@@ -1,0 +1,69 @@
+1.自定义属性指令
+import {Directive, ElementRef,Input} from '@angular/core';
+
+@Directive({
+    selector: '[backGroundColor]'
+})
+export class BackGroundDirecitve {
+    private el: HTMLElement;
+    constructor(el: ElementRef) {
+        this.el = el.nativeElement;
+        this.setStyle('yellow')
+        // el.nativeElement.style.backgroundColor=this.backGroundColor;
+    }
+    @Input('backGroundColor') set a(color:string) { //这里在input中起了别名，所以set后面的变量名随便写之后都不会用到
+        this.setStyle(color);
+    }
+    // backGroundColor: string;
+    setStyle(color:string) {
+        this.el.style.backgroundColor = color; 
+    } 
+}
+
+使用
+<h3  [backGroundColor]="color" class="myH3">hello world2!</h3>//如果使用的别名和元数据selector相同，则可以直接加括号使用
+否则：<h3 backGroundColor [a]="color" class="myH3">hello world2!</h3> //
+
+2.自定义结构指令
+结构指令需要访问组件模板内容，并且需要可以渲染组件模板内容的工。使用TemplateRef和ViewContainerRef服务可以实现，
+TemplateRef可以用来访问组件的模板，而ViewContainerRef可作为视图内容渲染器，将模板内容插入至DOM中。
+
+
+import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
+
+@Directive({
+    selector: '[myUnless]',
+    inputs: ['myUnless']  //这里inputs可以自定义取变量名
+})
+export class UnlessDirective{
+    set myUnless(newFlag: boolean) {   //这里必须跟inputs 同名
+        console.log(this.templateRef)
+        if(!newFlag) {
+            this.viewContainer.createEmbeddedView(this.templateRef)
+        }else{
+            this.viewContainer.clear();
+        }
+    }
+    constructor (private templateRef: TemplateRef<any>,private viewContainer: ViewContainerRef){
+
+    }
+}
+或者
+@Directive({
+    selector: '[myUnless]'
+})
+export class UnlessDirective{
+    @Input('myUnless')
+    set flag(newFlag: boolean) { //flag不会被用到
+        console.log(this.templateRef)
+        if(!newFlag) {
+            this.viewContainer.createEmbeddedView(this.templateRef)
+        }else{
+            this.viewContainer.clear();
+        }
+    }
+    constructor (private templateRef: TemplateRef<any>,private viewContainer: ViewContainerRef){
+
+    }
+}
+*myUnless以这种方式实现

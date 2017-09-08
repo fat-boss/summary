@@ -1,0 +1,9 @@
+1. angular将通用指令包含在CommonModule模块中，需要使用通用指令时，需要在应用模块中引入它
+BrowserModule模块中包含了上述模块，所以引入BrowserModule就可以了
+
+2. 表单指令分别被包含在 FormsModule, ReactiveFormsModule, InternalFormsSharedModule中
+	FormsModule包含 NgModel, NgModelGroup, NgForm和InternalSharedModule模块中包含的指令
+	
+	ReactiveFormsModule模块包含FormControlDirective, FormGroupDirective, FormControlName, FormGroupName, FormArrayName和 InternalFormsSharedModule中
+	
+	FormControlDirective指令可以将一个已有的FormControl实例绑定到一个元素
