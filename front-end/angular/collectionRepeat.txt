@@ -1,0 +1,4 @@
+1.代替ng-repeat
+2.ionic中的 原生angular不能使用
+3.collection-repeat的标签要有指定高度
+	ion-item可以使用 ion-slide-box中的ion-slide不能用
