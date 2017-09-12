@@ -1,0 +1,146 @@
+创建操作符、过滤操作符、组合操作符、工具操作符;
+
+RxJS和Promise对比
+
+let promise = new Promise((resolve,reject)=>{
+	if(/*异步操作成功*/) {
+		resolve(value)
+	} else {
+		reject(error)
+	}
+})
+
+let Observable = new Observable(observer=>{
+	observer.next(val1);
+	observer.next(val2);
+	
+	observer.error(err);
+})
+
+
+1.创建操作符:
+Observable.fromEvent(), new Observable()
+
+let observable = Rx.Observable.create(observer=>{
+	getData(data=>{
+		observer.next(data);
+		observer.complete();
+	})
+})
+
+observable.subscribe(data=>{
+	//doSomething(data)
+})
+
+
+2.变换操作符
+
+对数据进行操作
+
+{
+	"err_code": 0,
+	"data": {"name":"Operators"}
+}
+只想要data数据
+
+observable.map(res=>{
+	return res.data;
+}).subscribe(data=>{
+	//doSomething
+})
+
+
+
+3.过滤操作符
+
+observable.filter(res=>{
+	return !!res.data && res.status===200;
+}).map(res=>{
+	return res.data;
+}).subscribe(data=>{
+	//doSomething
+})
+filter对数据进行过滤，结果为false的数据将不会再流向下一个operator(map)
+
+
+4.组合操作符
+
+很多业务场景需要依赖两个甚至更多的接口数据，获取成功后关联合并
+
+Observable.forkJoin()
+
+let getFirstDataObs = Rx.Observable.create(observer=>{
+	observer.next(getFirstData());
+	observer.complete();
+})
+
+let getSecondDataObs = Rx.Observable.create(observer=>{
+	getSecondData(data=>{
+		observer.next(data);
+		observer.complete();
+	})
+})
+
+let observable = Rx.Observable.forkJoin(
+	getFirstDataObs,getSecondDataObs
+)
+
+observable.subscribe(datas=>{
+	//datas[0] 是getFirstDataObs的数据
+	//datas[1] 是getSecondDataObs的数据
+	//doSomething(datas)
+})
+
+
+如果数据需要依赖前一次请求的结果，两次请求必须有先后顺序的
+Observable.prototype.concatMap()
+
+let getFirstDataObs = Rx.Observable.create(observe=>{
+	observer.next(getFirstData())
+	observe.complete();
+});
+
+let createSecondDataObs = function(firstData) {
+	return Rx.Observable.create(observer=>{
+		getSecondData(firstData,secondData=>{
+			observer.next(secondData);
+			observer.complete();
+		})
+	})
+}
+
+let observable = getFirstDataObs.concatMap(firstData => {
+	return createSecondDataObs(firstData)
+}).subscribe(secondData=>{
+	doSomething(secondData)
+})
+
+工具操作符
+
+prevObservable.timeout(5000).subscribe(data=>{
+	dosomething(data);
+},err=>{
+	handleErr(err)
+})
+prevObservable超过5s没有返回数据流时，就会抛出err
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
