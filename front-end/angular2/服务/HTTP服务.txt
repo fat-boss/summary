@@ -1,0 +1,85 @@
+get: 
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http"
+import {Observable} from "rxjs/Rx"
+
+
+@Injectable()
+export class myHttpService {
+    constructor(private _http: Http){}
+    getContacts():Observable<any> {   //这里必须要定义返回的是Observable对象,否则不能进行map的链式调用
+        return this._http.get(CONTACT_URL)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    private extractData(res:any) {
+        console.log(res)
+        let body = res.json();
+        console.log(body)
+        return body || {}
+    }
+
+    private handleError(error:any):any {
+        let errMsg = error.message ? error.message : "error";
+        return Observable.throw(errMsg)
+    }
+}
+
+调用
+
+constructor(private myHttp: myHttpService){}
+
+getContacts(){
+	this.myHttp.getContacts().subscribe(contact=>this.contact=contact,err=>this.err=err)
+}
+
+post:
+
+import {Headers, RequestOptions} from "@angular/http";
+
+addContact(contact: Contact) :Observable<Contact> {
+
+	let body = JSON.stringify(contact);
+	let headers = new Headers({'Content-type':'application/json'});
+	let options = new RequestOptions({headers: headers});
+	
+	return this._http.post(CONTACT_URL,body,options)  //body是参数，json字符串，options是设置的headers
+				.map(this.extractData)
+				.catch(this.handleError)
+}
+
+调用
+
+this.myHttp.addContact(contact).subscribe(contact=>this.contact=contact,err=>this.err=err)
+
+
+jsonp：
+
+import {Injectable} from "@angular/core";
+import {Jsonp, URLSearchParams} from "@angular/http";
+
+@Injectable()
+export class ContactService {
+	constructor(private _jsonp: Jsonp) {}
+	
+	getContacts() {
+		let URL= 'http://....';
+		let params = new URLSearchParams();
+		params.set('format','json');
+		params.set('callback','JSONP_CALLBACK');
+		return this._jsonp
+				.get(URL,{search:params})
+				.map(res=>res.json())
+				.subscribe(
+					...
+				)
+	}
+}
+
+
+置换成Promise对象
+this._http.get(CONTACT_URL)
+	.toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+

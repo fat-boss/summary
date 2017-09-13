@@ -1,0 +1,15 @@
+obj = {
+       num: [this.num+''],
+    }
+	//服务的属性如果以后要修改并随时展示，需要用对象且 注入服务时，要用*ngFor才能随时更改
+	
+add(item:any):void {
+	this.list.push(item)
+}
+
+constructor () {}  //需要有构造函数才能在下面是用this.obj
+
+
+addNum () {
+	this.obj.num.push(++this.num+'')
+}
