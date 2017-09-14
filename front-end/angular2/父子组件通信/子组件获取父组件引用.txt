@@ -1,0 +1,28 @@
+已知父组件的类型
+
+import {ParentComponent} from './parent.component' 
+
+constructor(public parent: ParentComponent)
+
+未知父组件的类型
+
+一个组件可能是多个组件的子组价，有时候无法直接指导父组件的类型，通过“类-接口”的方式查找，即让父组件用过提供一个与“类-接口”
+标识同名的别名来协助查找
+
+首先创建Parent抽象类，只声明name属性
+
+export abstract class Parent {
+	name: string;
+}
+
+然后在ParentComponent组件的providers元数据中定义一个别名Provider，用useExisting来注入ParentComponent组件的实例
+
+selector: 'parent',
+providers: [{provide: Parent, useExisting: ParentComponent}]
+
+export class ParentComponent implements Parent{
+	name = '123';
+}
+
+子组件中直接使用
+constructor(public parent: Parent)

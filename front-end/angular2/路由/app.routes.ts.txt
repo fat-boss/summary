@@ -1,0 +1,9 @@
+import {Routes} from "@angular/router";
+
+import {Acomponent} from './A/Acomponent'
+import {Bcomponent} from './B/Bcomponent'
+
+export const rootRouterConfig: Routes = [
+	{path: 'a',component:Acomponent},
+	{path: 'b',component:Bcomponent}
+]

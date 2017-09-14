@@ -10,3 +10,11 @@
 如上面的B模块初始化的服务会覆盖A模块中初始化的服务，而且在A模块中的组件里使用的服务依然是B模块注入的服务实例
 
 
+注意2:
+
+派生类（用extends的类）不继承父组件的服务需要自己注入并super()传递上去(父组件也要注入)
+
+constructor(protected _con: ContactService){
+	super(_con);
+}
+

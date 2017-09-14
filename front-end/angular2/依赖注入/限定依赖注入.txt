@@ -1,0 +1,41 @@
+@Optional,@Host
+
+import {Optional} from '@angular/core';
+
+constructor(@Optional() private logger: LoggerService) {
+	if(this.logger) {
+		this.logger.log('hello')
+	}
+}
+这样就能兼容LoggerService服务不存在的情景(没有在相应的组件或模块中通过providers元数据来配置)
+
+
+
+@Host 限定查找的路径截止在宿主组件,如果找不到就会报错
+
+1.宿主组件是当前组件
+
+constructor(@Host() private logger: LoggerService) {//报错，实例查找限定在宿主组件中
+
+可以结合@Optional使得检查通过
+
+constructor(@Host() @Optional() private logger: LoggerService) 
+
+2.宿主组件是父组件
+@Component({
+	selector: 'contact-list',
+	template: `
+		<h1>contact list</h1>
+		<ng-content></ng-content>
+	`,
+	provider: [LoggerService] //父组件注入
+})
+
+<contact-list>
+	<contact-a></contact-a>
+</contact-list>
+
+contactA中
+constructor(@Host() @Optional() private logger: LoggerService) 可以正常使用
+
+contactList成为了contactA的宿主，contactA中注入的LoggerService会向上找到

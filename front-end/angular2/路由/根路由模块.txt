@@ -1,0 +1,14 @@
+app.module.ts中
+
+import {ModuleWithProviders} from '@angular/core';
+import {RouterModule} from “@angular/router”;
+
+import {rootRouterConfig} from './app.router.ts';
+
+let rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterConfig);
+
+
+@NgModule({
+	imports: [rootRouterModule]
+	//可以直接写 imports: [RouterModule.forRoot(rootRouterConfig)],这样就不用导入ModuleWithProviders
+})
