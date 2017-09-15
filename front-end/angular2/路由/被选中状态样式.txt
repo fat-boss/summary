@@ -1,0 +1,27 @@
+被选中时的状态
+<a [routerLink]="['/list']" routerLinkActive="active1">list</a>
+<a [routerLink]="['/pipe']" routerLinkActive="active2">pipe</a>
+<a [routerLink]="['/service']" routerLinkActive="active3">service</a>
+
+.active1 {
+    color: red;
+}
+.active2 {
+    color: yellow;
+}
+.active3 {
+    color: blue;
+}
+
+routerLinkActive指令还可以作用于routerLink所在元素的任意祖先元素。当该祖先元素任意routerLink处于激活状态时，
+该祖先元素就获得routerLinkActive指定的CSS类
+
+<nav routerLinkActive="active">
+	<a [routerLink]="['/collection']">
+		<i>收藏</i>
+	</a>
+	<a [routerLink]="['/list']">
+		<i>彤通讯录</i>
+	</a>
+</nav>
+不管当前页是收藏也还是通讯录页，nav标签都获得.active类

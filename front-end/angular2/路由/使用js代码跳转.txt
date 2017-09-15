@@ -1,0 +1,9 @@
+routerLink指令仅相应click事件，如果要响应其它事件或者根据运行时的数据动态决定如何跳转，
+则需通过Router.navgateByUrl()或Router.navigate()来完成
+
+import {Router} from "@angular/router";
+
+constructor(private _router: Router) {
+	_router.navgateByUrl('/collection')
+	//或者使用  _router.navigate(['/collection'])
+}

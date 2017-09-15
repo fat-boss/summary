@@ -1,0 +1,61 @@
+1.path参数
+
+{path: 'detail/:id',component: DetailComponent};
+
+<a [routerLink]="['/detail',1]">
+_router.navigate(['/detail',1]);
+_router.navigateByUrl('detail/1');
+
+js中获取参数
+import {ActivateRoute} from "@angular/router"
+
+constructor(private _activatedRoute: ActivatedRoute ) {}
+
+ngOnInit() {
+	console.log(this._activatedRoute.snapshot.params['id'])
+}
+
+注意：
+在重复跳转同一个链接时（同一页面跳转，不同参数），angular不会穿件组件实例，所以其构造函数和ngOnInit()方法都不会调用
+使用ActivatedRoute提供的Observable对象解决问题，对参数的更新进行订阅
+
+export class DetailComponent implements OnInit, OnDestroy{
+
+
+ngOnInit(){
+	this.sub = this._activatedRoute.params.subscribe(params=>{
+		this.contact_id = params['id']  //当id的值没有变时，则不会触发（性能提升）
+	})
+}
+
+ngOnDestroy() {
+	this.sub.unsubscribe() //为了避免内存泄漏，在组件销毁时应该取消订阅
+}
+
+
+2. query参数
+
+http://localhost:3000/list?limit=5
+
+与Path参数类似，跳转方法如下：
+
+<a [routerLink]="['/list']" [queryParams]="{limit: 5}" >
+this._router.navigate(['/list'],{queryParams:{limit:5}});
+this._router.navigateByUrl('/list?limit=5');
+
+js参数获取只能通过Observable对象来完成
+
+this.sub = this._activatedRoute.queryParams.subscribe(params=>{
+	this.limit = params['limit']
+})
+
+3. matrix参数
+通过在链接参数数组中插入一个对象来进行赋值
+
+<a [routerLink]="['/detail',this.contact_id,{a:1,b:2},  //可以直接写成contact_id,this指向component类
+	'album',{a:3,b:4}]"> Link </a>
+	
+angular会将该对象的属性转化为以;分隔符的键值对
+http://localhost:3000/detail/6;a=1;b=2/album;a=3;b=4
+
+matrix参数的获取方式同path相同 可通过快照和Observable对象来获取

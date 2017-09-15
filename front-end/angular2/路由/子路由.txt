@@ -1,0 +1,17 @@
+//app.routes.ts
+
+export const rootRounterConfig: Routes = [
+	{ path: 'detail/:id',component: DetailComponent,
+		children: [
+			{path: '', component: Annotation},//http://localhost:3000/detail/:id
+			{path: 'album',component: Album} //http://localhost:3000/detail/:id/album
+		]
+		
+	}
+]
+
+//detail.component.html
+
+<detail>
+	<router-outlet></router-outlet>
+</detail>

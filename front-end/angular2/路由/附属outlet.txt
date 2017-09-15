@@ -1,0 +1,19 @@
+主要outlet只有一个，附属的outlet可以有任意多个，各个附属outlet通过不同的命名加以区分
+
+//detail.component.html
+
+<router-outlet></router-outlet>
+<router-outlet name="aux"></router-outlet>
+
+app.routes.ts
+
+{path: 'detail/:id',component: DetailComponent,
+	chilren: [
+		//主要outlet
+		{path: '', component: Acomponent},
+		{path: 'album', component: Bcomponent},
+		//附属outlet
+		{path: 'annotation',component: Ccomponent, outlet: 'aux'},
+		{path: 'album',component: Bcomponent, outlet: 'aux'}
+	]
+}

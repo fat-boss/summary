@@ -1,0 +1,61 @@
+//canActivate.service.ts
+import {Injectable} from "@angular/core";
+import {CanActivate} from "@angular/router"
+
+@Injectable()
+export class CanActivateGuard implements CanActivate {
+    canActivate() {
+        return true;
+		// return new Observable<boolean>(observer=>{
+			observer.next(true);
+			observer.complete();
+		})
+    }
+}
+
+//在app.module.ts中依赖注入（必须在这个文件里面注入）
+
+
+{path: 'pipe/:id',component: PipeComponent,canActivate:[CanActivateGuard]},
+
+canDeactivate几乎相同 唯一不同的是第一个参数是组件
+canDeactivate(component:any) {
+	console.log(component);
+	return true;
+}
+
+
+resolve
+
+@Injectable()
+export class ResolveGuard implements Resolve<any>() {
+	contacts: {};
+	constructor(private _router: Router,private _contactService: ContactService){
+		resolve(route: ActivatedRouteSnapshot,state: RouterStateSnapshot) {
+			//返回Observable对象
+			return this._contactService.getContactById(route.params['id'])
+						.map(res=>{
+							if(res) return res
+							else {this._router.navigate(['/list'])}
+						})
+		}
+	}
+}
+
+path: 'a',
+component: 'Acomponent',
+canActivate: [CanActivateGuard],
+resolve: {
+	constact: ResolveGuard //表示通过ResolveGuard服务预加载的数据将存放于打塔参数的contact属性下
+}
+
+最后的配置项中
+a.component.ts中
+
+constructor(private _activatedRoute: ActivatedRoute){}
+
+ngOnInit(){
+	this._activatedRoute.data.subscribe(data=>{
+		console.log(data.contact)
+	})
+}
