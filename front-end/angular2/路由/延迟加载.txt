@@ -1,0 +1,29 @@
+loadChilren 需要使用特性模块，不直接用component了
+
+operate.module.ts
+
+const opertateRoutes: Routes = [
+	{ path: 'id/:id', component: OperateComponent }, //  operate/id/:id
+	{ path: 'isAdd/:isAdd', component: OperateComponent } //  operate/isAdd/:isAdd
+]
+
+@NgModule({
+	imports: [BrowserModule,FormsModule,RouterModule.forChild(opertateRoutes)],
+	declarations: [OperateComponent]
+})
+export class OperateModule{}  //这里取名用在app.routes.ts中
+
+
+//app.routes.ts
+export const rootRouterConfig: Routes = [
+	{path: 'operate', loadChildren: './operate/operate.module.ts#OperateModule'} //以# + 上面的取名
+]
+
+
+模块加载拦截 CanLoad, 同CanActivate相同
+
+import {CanLoad} from '@angular/router'
+
+canLoad(route: Route) {
+	return true;
+}
