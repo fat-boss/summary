@@ -47,5 +47,15 @@ true：继承父域，且新建独立作用域  //如果修改了子域的一个
 	=：双向绑定子域和父域；  //不用加{{}}
 
 	&：单向绑定父域，以便在其中运行函数 //这时候引用的是父域的函数，执行环境也是父域的环境（里面的$scope是父域的scope）
+	
+如果父域的函数绑定了参数的，子域需要将参数变为对象进行传递
 
-require:
+父: $scope.getTime = function(date,date2) {console.log(date)}
+
+父html:  <div> <son on-do='getTime(date,date2)'></son> </div>
+
+directive中:  scope: {
+						do: '&onDo'
+					}
+				
+			scope.do({date: date1,date2: date2})
