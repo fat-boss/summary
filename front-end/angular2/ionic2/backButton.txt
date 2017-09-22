@@ -1,0 +1,13 @@
+//app.module.ts
+IonicModule.forRoot(MyApp,{
+      backButtonText: '',
+      iconMode: 'android',
+      mode: 'ios'
+    })
+设置成上式在navCtrl.push 跳转的时候会自带返回按钮
+
+.back-button.show-back-button {
+  display: none;
+}
+
+目前想到的解决办法是在跳转页面的scss文件加入上面的样式

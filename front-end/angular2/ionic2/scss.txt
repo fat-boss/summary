@@ -1,0 +1,8 @@
+scss如果不是在app.scss中 ， 记得加入 组件定义时的 selector 
+如： selector: 'page-test'
+
+//scss中
+  page-test {
+		..
+  }
+  否则就是全局样式
