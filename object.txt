@@ -36,3 +36,5 @@ descriptor：必需。目标属性所拥有的特性
 
 
 2.Object.keys(obj),可以遍历出对象的属性，返回的是一个数组
+
+3.获取对象有多少个属性  Object.getOwnPropertyNames(obj).length
