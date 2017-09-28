@@ -12,3 +12,4 @@ let rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterConfi
 	imports: [rootRouterModule]
 	//可以直接写 imports: [RouterModule.forRoot(rootRouterConfig)],这样就不用导入ModuleWithProviders
 })
+

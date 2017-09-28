@@ -1,0 +1,28 @@
+严重bug：当slide滑动浮动过大时, this.slides.getActiveIndex()可以等于slide的长度,这时候页面会出错
+
+willSlideChanged() {
+    if (this.slides.getActiveIndex() < this.length-1 ) {   //索引在倒数第一位（不包括）时，正常处理
+      this.currentData[this.index] = this.choice.value;
+
+      var index = this.slides.getActiveIndex();
+
+      if (this.currentData[index]) {
+        this.choice.value = this.currentData[index]
+      } else {
+        this.choice.value = '';
+      }
+
+      this.index = index;
+      this.headTitle = this.titles[this.index].title;
+    
+
+    } else if(this.slides.getActiveIndex() == this.length-1 ) { //在最后一位时，强行处理，否则下面操作过后也会出现为题
+ 
+      this.index = this.length - 1;
+     
+    } else {                                                  	//出现bug时，强行向前滑动一位，因为是bug并无页面效果
+      this.slides.slidePrev();
+      this.index = this.length - 1;
+      console.log(this.index)
+    }
+  }
