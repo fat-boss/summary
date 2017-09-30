@@ -1,0 +1,44 @@
+import { Injectable, EventEmitter } from '@angular/core';
+
+@Injectable()
+export class ShareService {
+	shareDatas = {
+		length: 0
+	}
+	dispatcher: EventEmitter<any> = new EventEmitter<any>();
+	
+	
+	setLength(len) {
+		this.shareDatas.length = len;
+		this.dispatcher.emit(this.shareDatas);
+	}
+	
+	getLength(cb) {
+		return this.dispatcher.subscribe(cb)
+	}	
+}
+
+
+使用
+page1: 
+constructor(private share: ShareService){}
+
+ngOnInit() {
+	this.share.getLength(shareDatas=>{
+		this.length = shareDatas.length;
+	})
+}
+
+page2:
+constructor(private share: ShareService){
+	setLength() {
+		this.share.setLength(123)
+	}
+}
+
+
+
+
+
+
+

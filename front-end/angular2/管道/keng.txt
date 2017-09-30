@@ -1,0 +1,1 @@
+如果自定义了非app.module.ts之外的module，那么管道需要在这个module里面引入，只在全局的app.module.ts引入后使用会报错！！！！！！！！！！！！！！！！！！
