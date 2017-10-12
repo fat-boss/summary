@@ -1,0 +1,8 @@
+  <form [formGroup]="form" *ngIf="settingsReady">
+
+  form: FormGroup
+  
+  值有变化：
+  this.form.valueChanges.subscribe((v) => {
+     
+    });

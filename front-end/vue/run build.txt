@@ -1,0 +1,4 @@
+npm run build的时候
+config/index.js
+
+assetsPublicPath: '/' 改成 './'
