@@ -1,0 +1,13 @@
+
+在index.html前面引入js
+
+
+window.onload = function () {
+	var el = document.createElement('div');
+	document.body.appendChild(el);
+
+	eruda.init({
+		container: el,
+		tool: ['console', 'elements'] //这里不要则显示全部的工具栏
+	});
+}
