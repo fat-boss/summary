@@ -1,0 +1,10 @@
+http://www.jianshu.com/p/b45ba73d3f73
+
+app统一为ios模式border不显示
+
+ionic2使用了带小数点的border-width,而带小数点的border存在浏览器兼容性问题
+
+小数点的px兼容性问题
+采用四舍五入解析的浏览器：IE8、IE9、Chrome,如0.55px显示为1px
+采用直接取整解析的浏览器：IE7、Firefox,如0.55px显示为0px
+可以显示带小数点的浏览器 : Safari,如0.55px就显示为0.55px

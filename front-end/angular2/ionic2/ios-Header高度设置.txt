@@ -1,0 +1,2 @@
+直接对 ion-header进行padding-top和bgc设置会出现 退回到该页title不能及时出现的bug
+解决：对ion-nav进行上面的操作

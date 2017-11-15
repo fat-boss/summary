@@ -1,0 +1,27 @@
+style lang='scss' scoped
+
+找到 build / vue-loader.conf.js
+
+配置如下： 
+
+module.exports = {
+  loaders: utils.cssLoaders({
+    sourceMap: isProduction
+      ? config.build.productionSourceMap
+      : config.dev.cssSourceMap,
+    extract: isProduction
+  }),
+  transformToRequire: {
+    video: 'src',
+    source: 'src',
+    img: 'src',
+    image: 'xlink:href'
+  },
+  
+  //这里进行配置，配置前 cnpm i node-sass -sass-loader --save-dev
+  vue: {
+    loaders: {
+      scss: ['vue-style-loader','css','sass'].join('!')
+    }
+  }
+}

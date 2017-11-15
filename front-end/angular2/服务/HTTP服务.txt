@@ -2,6 +2,7 @@ get:
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http"
 import {Observable} from "rxjs/Rx"
+import "rxjs/add/operator/map"    //必须加上才能用map函数  或者直接 import "rxjs/Rx"这样会将全部方法加入，不推荐(需要哪个方法加哪个，如 import "rxjs/add/operator/do")
 
 
 @Injectable()

@@ -23,5 +23,8 @@ platform: android-25 即sdk版本没有下载
 
 想卸载 已有的ionic cordova 和 cnpm 使用uninstall不行 找文件找不到，其实是隐藏了 在c盘里面的 appdata
 
-！！不知道为什么懂了环境变量以后就总会出错了，报一个莫名奇妙的cannot read properties 'length'的错，这个是不知道为什么在 add android的时候没有将CordovalLib的文件夹下载下来,我的解决方法是将家里下载好的直接复制进去就行
+！！不知道为什么懂了环境变量以后就总会出错了，报一个莫名奇妙的cannot read properties 'length'的错，这个是不知道为什么在 add android的时候没有将CordovalLib的文件夹下载下来,解决方法是将家里下载好的直接复制进去就行
 然后会报一个内存不足的错，这个是因为64位机安装了32位的jdk
+
+
+cordova-android@~6.2.2报错 currency  cordovaTest的node_module来替换

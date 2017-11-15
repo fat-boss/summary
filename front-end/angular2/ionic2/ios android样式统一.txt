@@ -1,0 +1,8 @@
+// app.modules.ts
+IonicModule.forRoot(MyApp, { 
+                  tabsHideOnSubPages:"true", // nav在push的时候隐藏
+                  tabs backButtonText: '',  // 不显示back按钮上的文字       
+                  iconMode: 'ios', 
+                  mode: 'ios' 
+})
+

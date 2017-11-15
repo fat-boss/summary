@@ -1,0 +1,12 @@
+在移动浏览器中，当你点击按钮的单击事件时，将会等待大约300ms的时间。
+这是因为，浏览器是等着看，如果你是真正执行双击。
+
+Android 设备上的 google浏览器 （Chrome） 32+ 版本，在meta头信息中设置 width=device-width 没有300毫秒的延时，所以也无需使用本插件。
+
+import FastClick from 'fastclick'
+
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
