@@ -2,3 +2,5 @@ npm run build的时候
 config/index.js
 
 assetsPublicPath: '/' 改成 './'
+
+productionSourceMap: 改成false  打包出来的没有map文件（map文件很大）
