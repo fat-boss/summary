@@ -1,0 +1,20 @@
+ng-repeat在dom渲染完成前不能通过getEle...等方法来获取
+
+
+<li repeat-done ng-repeat="item in modalItems">{{item}}</li>
+
+.directive('repeatDone', function () {
+        return {
+            restrict: 'A',
+            scope: false,
+            link: function (scope, ele, attr) {
+                if (scope.$last) {
+                    scope.$emit('repeatDone')
+                }
+            }
+        }
+    })
+	
+$scope.$on('repeatDone',function(){
+	//在这里就能获取 li 标签的所有元素
+})
