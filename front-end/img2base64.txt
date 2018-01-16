@@ -1,0 +1,5 @@
+function base64 () {
+	var canvas = document.createElement('canvas');
+	var dataURL = canvas.toDataURL('1.png');
+	return dataURL
+}
