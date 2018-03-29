@@ -18,7 +18,7 @@ module.exports = {
     image: 'xlink:href'
   },
   
-  //这里进行配置，配置前 cnpm i node-sass -sass-loader --save-dev
+  //这里进行配置，配置前 cnpm i node-sass sass-loader --save-dev
   vue: {
     loaders: {
       scss: ['vue-style-loader','css','sass'].join('!')
