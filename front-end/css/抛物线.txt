@@ -1,0 +1,29 @@
+抛物线需要水平垂直方向上的速度不相等 且某一方向上使用贝塞尔曲线(需要有抛物效果的方向)
+
+
+css:
+	#boxFa {
+            margin-left: 100px;
+            margin-top: 100px;
+            transform: translate3d(0,0,0);
+            transition: transform 1s cubic-bezier(0.6,-0.6,1,1);
+            /*transition: transform 1s linear;*/
+        }
+	#box {
+		transition: transform 1s linear;
+		transform: translate3d(0,0,0);
+	}
+
+html:
+	<div id="boxFa">
+		<div id="box" style="width: 100px; height: 100px; background-color: red;">
+		</div>
+	</div>
+	
+js: 
+	var box = document.getElementById('box');
+	var boxFa = document.getElementById('boxFa');
+	setTimeout(function(){
+	  box.style.transform = 'translate3d(100px,0,0)'
+	  boxFa.style.transform = 'translate3d(0,100px,0)'
+	},300)
