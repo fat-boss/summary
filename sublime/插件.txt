@@ -1,0 +1,22 @@
+emmet
+vuejs套餐
+Alignment 用于代码格式的自动对齐
+CodeIntel 代码自动提示
+Bracket Highlighter
+类似于代码匹配，可以匹配括号，引号等符号内的范围。
+autoprefixer CSS添加私有前缀
+
+Doc​Blockr
+功能：生成优美注释
+
+Color​Picker
+功能：调色板
+
+AutoFileName
+功能：快捷输入文件名
+
+Nodejs
+
+OpenInBrowser
+
+terminal

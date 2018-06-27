@@ -1,0 +1,2 @@
+alt + shift + num 分几列
+ctrl + shift + num 当前文件放到第num列
