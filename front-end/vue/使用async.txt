@@ -1,0 +1,4 @@
+cnpm i babel-core babel-preset-es2015 babel-preset-stage-3 -D
+
+.babelrc文件
+"presets"里面加一个 "es2015"
