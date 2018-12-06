@@ -1,0 +1,22 @@
+import CreateAPI from 'vue-create-api'
+
+import Myalert from '@/components/alert'  //Myalert 一定是要与 alert.vue 的name属性值一致
+
+Vue.use(CreateAPI)
+
+Vue.createAPI(Myalert)
+
+在一般的js文件里面使用
+let alert;
+Utils.prototype.alert = function (obj) {
+  // {title,msg,onConfirm,onCancel,showCancel}
+  if (!alert) {
+    return alert = Myalert.$create(obj)
+  } else {
+    alert.$updateProps(obj)
+    return alert
+  }
+}
+
+在vue文件里面使用
+this.$createMyalert(obj).show()
