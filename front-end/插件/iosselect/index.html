@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="iosselect-master/src/iosSelect.css">
+  <script src="iosselect-master/src/iosSelect.js"></script>
+</head>
+<body>
+<button onclick="trigger()">trigger</button>
+<!--<script src="iosselect2.js"></script>-->
+<script src="dist/iosselect2.js"></script>
+<script>
+  function trigger () {
+//    console.log(IosSelect)
+    var test = new IosSelect(3,
+        [iosProvinces, iosCitys2, iosCountrys],
+        {
+          title: '地址选择',
+          itemHeight: 35,
+          relation: [1, 1],
+          callback: function (selectOneObj, selectTwoObj, selectThreeObj) {
+
+          }
+        }
+    )
+  }
+</script>
+
+</body>
+</html>
