@@ -1,0 +1,3 @@
+process.nextTick在宏任务中最先执行，
+setTimeout 先于 setImmediate执行（网上说是大概率）
+https://blog.csdn.net/hkh_1012/article/details/53453138
