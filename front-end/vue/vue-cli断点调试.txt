@@ -1,3 +1,9 @@
 build文件夹下的 webpack.dev.conf.js中
 将 devtool: '#cheap-module-eval-source-map' 改成 devtool: '#source-map'
 即可在f12中进行断点调试
+
+vue-cli3环境下 在vue.config.js中加入
+
+configureWebpack :{
+        devtool: '#source-map',
+    }
