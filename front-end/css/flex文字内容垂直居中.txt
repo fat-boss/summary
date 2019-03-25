@@ -1,0 +1,23 @@
+<view class='section'>
+  <view>one</view>
+  <view>two</view>
+  <view>three</view>
+</view>
+
+.section{
+  height: 200rpx;
+  display: flex;
+  flex-direction: row;
+  /* 在父元素view属性上设置一下三个属性并不会实现子元素内容的水平垂直居中，所以要格外注意 */
+  /* display: -webkit-flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+.section view{
+  width: 200rpx;
+  height: 100%;
+  /* 得在需要让内容居中的元素上设置以下三个元素才会使里面内容水平垂直居中*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
