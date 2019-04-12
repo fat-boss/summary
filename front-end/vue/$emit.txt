@@ -1,1 +1,7 @@
 当父子组件均需要传参的时候  使用arguments
+
+<son-com @sonClick="test(parentData, arguments)"></son-com>
+
+test (data) {
+	console.log(arguments[1][0])
+}
