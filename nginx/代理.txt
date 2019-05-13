@@ -1,0 +1,9 @@
+server {
+        listen       9999;
+        server_name  localhost;
+        location / {
+			proxy_pass http://localhost:8888;
+        }
+    }
+	
+	代理端口别用8080
