@@ -1,0 +1,132 @@
+改密码
+
+passwd
+改时区
+
+tzselect
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+安装v2 (https://www.4spaces.org/digitalocean-build-v2ray-0-1/)
+
+bash <(curl -L -s https://install.direct/go.sh)
+vim  /etc/v2ray/config.json
+
+"port": 12169,
+"protocol": "vmess",
+"settings": {
+  "clients": [
+    {
+      "id": "2da50767-15c5-43aa-959d-74768f4108b4",
+      "level": 1,
+      "alterId": 233
+    }
+  ]
+},
+"streamSettings": {
+  "network": "ws"
+},
+"sniffing": {//可不加
+  "enabled": true,
+  "destOverride": [
+    "http",
+    "tls"
+  ]
+}
+ 
+
+启动
+
+sudo systemctl start v2ray
+
+安装caddy (https://caddyserver.com/download) / (https://www.4spaces.org/v2ray-nginx-tls-websocket/)
+
+curl https://getcaddy.com | bash -s personal
+(https://www.howtoing.com/how-to-host-a-website-with-caddy-on-ubuntu-16-04/)
+
+which caddy
+
+mkdir /etc/caddy
+
+touch /etc/caddy/Caddyfile
+
+mkdir /etc/ssl/caddy
+
+chown -R www-data.www-data /etc/ssl/caddy
+
+mkdir /var/www
+
+curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+
+systemctl daemon-reload
+
+systemctl enable caddy.service
+
+查看状态
+
+ systemctl status caddy.service
+
+测试
+
+echo '<h1>Hello World!</h1>' | sudo tee /var/www/index.html
+nano /etc/caddy/Caddyfile
+http:// {
+    root /var/www
+    gzip
+}
+sudo systemctl start caddy
+ 
+
+zhaoxin.me {
+    tls zhang@zhaoxin.me
+    root /etc/caddy/www/
+    gzip
+    timeouts none
+    proxy /v2 127.0.0.1:12169 {
+        without /v2
+        websocket
+    }
+}
+#import other_conf/*
+确认bbr加速打开
+
+lsmod | grep bbr
+
+ 
+
+实际命令history
+
+    1  passwd
+    2  ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    3  date
+    4  bash <(curl -L -s https://install.direct/go.sh)
+    5  vim  /etc/v2ray/config.json
+    6  ps -ef|grep v2ray
+    7  sudo systemctl start v2ray
+    8  ps -ef|grep v2ray
+    9  curl https://getcaddy.com | bash -s personal
+   10  which caddy
+   11  mkdir /etc/caddy
+   12  touch /etc/caddy/Caddyfile
+   13  mkdir /etc/ssl/caddy
+   14  mkdir /var/www
+   15  curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+   16  systemctl daemon-reload
+   17  systemctl enable caddy.service
+   18  systemctl status caddy.service
+   19  echo '<h1>Hello World!</h1>' | sudo tee /var/www/index.html
+   20  nano /etc/caddy/Caddyfile
+   21  sudo systemctl start caddy
+   22  systemctl status caddy.service
+   23  vim  /etc/caddy/Caddyfile
+
+   25  cat  /etc/caddy/Caddyfile
+   50  chown -R www-data.www-data /etc/ssl/caddy
+   51  systemctl restart caddy
+   52  systemctl status caddy
+
+  114  rm -R www
+  115  git clone https://github.com/gabrielecirulli/2048.git www
+  116  ll
+  117  cd www
+  118  ll
+  119  cat  /etc/v2ray/config.json
+  121  lsmod | grep bbr
