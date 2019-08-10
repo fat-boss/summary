@@ -1,0 +1,18 @@
+wget (node-v0.10.28.tar.gz的下载路径 可能是cdn...)
+
+# tar xvf node-v0.10.28.tar.gz
+
+　　# cd node-v0.10.28
+
+　　# ./configure
+
+　　# make
+
+　　# make install
+
+　　# cp /usr/local/bin/node /usr/sbin/
+
+　　查看当前安装的Node的版本
+
+　　# node -v
+
