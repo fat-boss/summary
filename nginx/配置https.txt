@@ -1,0 +1,7 @@
+在mac/linux系统中 通过编译nginx.tar.gz方式安装的nginx需要下载pcre(如pcre-8.00) 和openssl(如openssl-1.1.0h)
+通过 .configure --with....(其中pcre和openssl是绝对路径)
+然后make && make install
+会在同级目录下创建一个nginx文件夹
+生成https免费证书 https://blog.csdn.net/frankenjoy123/article/details/76187270 可放在nginx/conf文件夹下面
+配置nginx.conf时 在error_log同级地方（可以在error_log上面） 
+加上user root(自己主机名 我的是beisen) admin(一定加上这个 group否则报错) 即： user beisen root; 否则会因为权限问题而403 forbidden
